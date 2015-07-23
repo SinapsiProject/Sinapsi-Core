@@ -1,6 +1,5 @@
 package com.sinapsi.engine.builder;
 
-import com.sinapsi.client.AppConsts;
 import com.sinapsi.engine.Action;
 import com.sinapsi.engine.ComponentFactory;
 import com.sinapsi.engine.MacroEngine;
@@ -17,7 +16,8 @@ import java.util.Map;
  * on a specified macro and build it only when editing is completed.
  */
 public class MacroBuilder{
-
+	private static final String DEFAULT_MACRO_COLOR = "#667a7f";
+	private static final String DEFAULT_MACRO_ICON = "ic_macro_default";
 
     private MacroInterface macro;
 
@@ -57,8 +57,8 @@ public class MacroBuilder{
 
     private boolean internalValidate(){
         if(name == null || name.isEmpty()) return false;
-        if(iconName==null || iconName.isEmpty()) iconName = AppConsts.DEFAULT_MACRO_ICON;
-        if(color == null || color.isEmpty()) color = AppConsts.DEFAULT_MACRO_COLOR;
+        if(iconName==null || iconName.isEmpty()) iconName = DEFAULT_MACRO_ICON;
+        if(color == null || color.isEmpty()) color = DEFAULT_MACRO_COLOR;
         if(executionFailurePolicy == null || executionFailurePolicy.isEmpty()) executionFailurePolicy = Macro.ABORT_ON_UNAVAILABLE_AT_SWITCH;
         if(trigger == null || trigger.getName().equals(ComponentFactory.TRIGGER_EMPTY)) return false;
         if(trigger.getValidity() != ComponentBuilderValidityStatus.VALID) return false;
