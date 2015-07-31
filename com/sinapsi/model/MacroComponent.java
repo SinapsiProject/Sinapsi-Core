@@ -8,7 +8,7 @@ import java.util.HashMap;
  * should implement this interface.
  *
  */
-public interface MacroComponent extends Parameterized{
+public interface MacroComponent extends ParameterizedFormal{
 
     //TODO: could this contain executionDevice field painlessly?
 

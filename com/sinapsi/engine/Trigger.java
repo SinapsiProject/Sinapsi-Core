@@ -5,9 +5,9 @@ import com.sinapsi.engine.parameters.ActualParamBuilder;
 import com.sinapsi.model.DeviceInterface;
 import com.sinapsi.model.DistributedComponent;
 import com.sinapsi.model.MacroInterface;
-import com.sinapsi.model.Parameterized;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.parameters.StringMatchingModeChoices;
+import com.sinapsi.model.ParameterizedActual;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +21,7 @@ import java.util.Iterator;
  * For example, classes like TriggerWifi and TriggerSMS should
  * implement this interface.
  */
-public abstract class Trigger implements Parameterized, DistributedComponent {
+public abstract class Trigger implements ParameterizedActual, DistributedComponent {
 
     protected DeviceInterface executionDevice;
     protected String params;

@@ -47,14 +47,4 @@ public class ActionDescriptor extends CommunicationInfo implements MacroComponen
 	public String getFormalParameters() {
 		return formalParams;
 	}
-
-	@Override
-	public String getActualParameters() {
-		return null;
-	}
-
-	@Override
-	public void setActualParameters(String params) {
-		//does nothing
-	}
 }

@@ -4,7 +4,7 @@ import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.model.DeviceInterface;
 import com.sinapsi.model.DistributedComponent;
-import com.sinapsi.model.Parameterized;
+import com.sinapsi.model.ParameterizedActual;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  * For example, classes like ActionNotification and ActionSMS should
  * implement this interface.
  */
-public abstract class Action implements Parameterized, DistributedComponent {
+public abstract class Action implements ParameterizedActual, DistributedComponent {
 
 
     protected DeviceInterface executionDevice;

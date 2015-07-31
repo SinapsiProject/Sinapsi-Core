@@ -48,14 +48,4 @@ public class TriggerDescriptor extends CommunicationInfo implements MacroCompone
     public String getFormalParameters() {
         return formalParameters;
     }
-
-    @Override
-    public String getActualParameters() {
-        return null;
-    }
-
-    @Override
-    public void setActualParameters(String params) {
-        //does nothing
-    }
 }
