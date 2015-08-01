@@ -1,6 +1,7 @@
 package com.sinapsi.model.impl;
 
 import com.sinapsi.model.MacroComponent;
+import com.sinapsi.model.module.SinapsiModuleDescriptor;
 
 import java.util.HashMap;
 
@@ -12,15 +13,17 @@ public class TriggerDescriptor extends CommunicationInfo implements MacroCompone
 	private int minVersion;
 	private String name;
 	private String formalParameters;
+	private SinapsiModuleDescriptor module;
 	
 	/**
 	 * Default ctor
 	 */
-	public TriggerDescriptor(int minVer, String n, String formalParameters) {
+	public TriggerDescriptor(int minVer, String n, String formalParameters, SinapsiModuleDescriptor module) {
 		super();
-		minVersion = minVer;
-		name = n;
+		this.minVersion = minVer;
+		this.name = n;
         this.formalParameters = formalParameters;
+        this.module = module;
 	}
 
 	@Override
@@ -48,4 +51,9 @@ public class TriggerDescriptor extends CommunicationInfo implements MacroCompone
     public String getFormalParameters() {
         return formalParameters;
     }
+
+	@Override
+	public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+		return module;
+	}
 }

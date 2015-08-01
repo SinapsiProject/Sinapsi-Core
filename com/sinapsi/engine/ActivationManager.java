@@ -1,9 +1,7 @@
 package com.sinapsi.engine;
 
-import com.sinapsi.engine.components.TriggerEngineStart;
+import com.sinapsi.engine.components.core.TriggerEngineStart;
 import com.sinapsi.engine.execution.ExecutionInterface;
-import com.sinapsi.engine.system.SystemFacade;
-import com.sinapsi.model.DeviceInterface;
 
 import java.util.ArrayList;
 import java.util.Calendar;

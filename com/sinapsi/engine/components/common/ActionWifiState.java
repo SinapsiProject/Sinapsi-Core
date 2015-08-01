@@ -1,10 +1,12 @@
-package com.sinapsi.engine.components;
+package com.sinapsi.engine.components.common;
 
+import com.sinapsi.engine.DefaultCoreModules;
 import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.system.WifiAdapter;
 import com.sinapsi.engine.Action;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.HashMapBuilder;
 
 import org.json.JSONException;
@@ -65,5 +67,8 @@ public class ActionWifiState extends Action{
                 .create();
     }
 
-
+    @Override
+    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+        return DefaultCoreModules.ANTARES_COMMON_MODULE;
+    }
 }

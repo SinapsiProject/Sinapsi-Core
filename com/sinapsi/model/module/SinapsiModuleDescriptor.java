@@ -1,12 +1,12 @@
-package com.sinapsi.model.plugin;
+package com.sinapsi.model.module;
 
 /**
  * TODO: doku
  */
-public interface SinapsiPluginPackageDescriptor {
+public interface SinapsiModuleDescriptor {
     public int getMinimumEngineVersion();
     public int getDefaultEngineVersion();
-    public String packageName();
+    public String getModuleName();
     public String getDeveloperID();
     public String getClientPlatformType();
 }

@@ -2,6 +2,9 @@ package com.sinapsi.model;
 
 import com.sinapsi.model.impl.ActionDescriptor;
 import com.sinapsi.model.impl.TriggerDescriptor;
+import com.sinapsi.model.module.SinapsiModule;
+import com.sinapsi.model.module.SinapsiModuleDescriptor;
+import com.sinapsi.model.module.SinapsiModuleMember;
 
 import java.util.List;
 
@@ -12,7 +15,7 @@ import java.util.List;
 public interface FactoryModelInterface {
 
     /**
-     * Should create a new instance of UserInterface
+     * Creates a new instance of UserInterface
      *
      * @param id the user id in the db
      * @param email the user's email
@@ -23,7 +26,7 @@ public interface FactoryModelInterface {
 
     
     /**
-     * Should create a new instance of DeviceInterface
+     * Create a new instance of DeviceInterface
      *
      * @param id the device id in the db
      * @param name the device name i.e. "Office Phone"
@@ -36,7 +39,7 @@ public interface FactoryModelInterface {
     public DeviceInterface newDevice(int id, String name, String model, String type, UserInterface user, int clientVersion);
 
     /**
-     * Should create a new instance of MacroInterface
+     * Creates a new instance of MacroInterface
      *
      * @param name the name chosen for the macro
      * @param id the id of the macro in the db
@@ -45,19 +48,34 @@ public interface FactoryModelInterface {
     public MacroInterface newMacro(String name, int id);
     
     /**
-     * Should create a new action abstract representation
+     * Creates a new action abstract representation
      * @param minVersion min version of the abstract action
      * @param name the name of the abstract action
+     * @param module
      * @return
      */
-    public ActionDescriptor newActionDescriptor(int minVersion, String name, String formalParameters);
+    public ActionDescriptor newActionDescriptor(int minVersion, String name, String formalParameters, SinapsiModuleDescriptor module);
     
     /**
-     * Should create a new trigger abstract representation
+     * Creates a new trigger abstract representation
      * @param minVersion min version of the abstract trigger
      * @param name the name of the abstract trigger
+     * @param module
      * @return
      */
-    public TriggerDescriptor newTriggerDescriptor(int minVersion, String name, String formalParameters);
-    
+    public TriggerDescriptor newTriggerDescriptor(int minVersion, String name, String formalParameters, SinapsiModuleDescriptor module);
+
+    /**
+     * Creates a new module descriptor
+     * @param minVersion the minimum engine version this module requires
+     * @param defVersion the engine version this module was designed for
+     * @param name the name of the module
+     * @param devId the developer id
+     * @param platform the platform
+     * @return a new SinapsiModuleDescriptor
+     */
+    public SinapsiModuleDescriptor newModuleDescriptor(int minVersion, int defVersion, String name, String devId, String platform);
+
+    @SuppressWarnings("unchecked")
+    public SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, Class<? extends SinapsiModuleMember>... members);
 }

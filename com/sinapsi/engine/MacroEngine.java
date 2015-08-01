@@ -9,6 +9,7 @@ import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.impl.ActionDescriptor;
 import com.sinapsi.model.impl.FactoryModel;
 import com.sinapsi.model.impl.TriggerDescriptor;
+import com.sinapsi.model.module.SinapsiModule;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,6 +46,22 @@ public class MacroEngine {
         device = currentDevice;
         activator = activationManager;
         log = sinapsiLog;
+
+        factory = new ComponentFactory(device, log, componentClasses);
+
+        sinapsiLog.log("MACROENGINE", "Engine initialized.");
+    }
+
+    public MacroEngine(DeviceInterface currentDevice,
+                       ActivationManager activationManager,
+                       SinapsiLog sinapsiLog,
+                       SinapsiModule... modules){
+        device = currentDevice;
+        activator = activationManager;
+        log = sinapsiLog;
+
+        EngineModuleManager moduleManager = new EngineModuleManager(this, modules);
+        Class<? extends MacroComponent>[] componentClasses = moduleManager.getAllComponentClasses();
 
         factory = new ComponentFactory(device, log, componentClasses);
 

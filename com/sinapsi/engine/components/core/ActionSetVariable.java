@@ -1,10 +1,12 @@
-package com.sinapsi.engine.components;
+package com.sinapsi.engine.components.core;
 
+import com.sinapsi.engine.DefaultCoreModules;
 import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.VariableManager;
 import com.sinapsi.engine.Action;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.JSONUtils;
 
 import org.json.JSONException;
@@ -77,5 +79,10 @@ public class ActionSetVariable extends Action {
         return null; //NO REQUIREMENTS NEEDED. Integrated in engine.
                      //This means this action is always available, on
                      // every device.
+    }
+
+    @Override
+    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+        return DefaultCoreModules.ANTARES_CORE_MODULE;
     }
 }

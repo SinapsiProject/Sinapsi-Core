@@ -1,9 +1,11 @@
-package com.sinapsi.engine.components;
+package com.sinapsi.engine.components.core;
 
+import com.sinapsi.engine.DefaultCoreModules;
 import com.sinapsi.engine.Event;
 import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.Trigger;
+import com.sinapsi.model.module.SinapsiModuleDescriptor;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,5 +45,10 @@ public class TriggerEngineStart extends Trigger{
         return null; //NO REQUIREMENTS NEEDED. Integrated in engine.
                      //This means this trigger is always available, on
                      // every device.
+    }
+
+    @Override
+    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+        return DefaultCoreModules.ANTARES_CORE_MODULE;
     }
 }

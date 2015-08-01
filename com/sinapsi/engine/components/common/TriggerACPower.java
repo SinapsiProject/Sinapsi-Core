@@ -1,11 +1,13 @@
-package com.sinapsi.engine.components;
+package com.sinapsi.engine.components.common;
 
+import com.sinapsi.engine.DefaultCoreModules;
 import com.sinapsi.engine.Event;
 import com.sinapsi.engine.SinapsiVersions;
-import com.sinapsi.engine.execution.ExecutionInterface;
-import com.sinapsi.engine.system.SMSAdapter;
 import com.sinapsi.engine.Trigger;
+import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.engine.system.CommonDeviceConsts;
+import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.HashMapBuilder;
 
 import org.json.JSONException;
@@ -13,21 +15,19 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-/**
- * TriggerSMS class. This trigger will activate a macro when
- * a new SMS message arrives on the device. This trigger can
- * be parametrized by the sender or/and by the content of the
- * message.
- */
-public class TriggerSMS extends Trigger{
 
-    public static final String TRIGGER_SMS = "TRIGGER_SMS";
+/**
+ * TriggerACPower class. This trigger will activate a macro when
+ * the AC charger is connected or disconnected.
+ */
+public class TriggerACPower extends Trigger {
+
+    public static final String TRIGGER_AC_POWER = "TRIGGER_AC_POWER";
 
     @Override
     public JSONObject getFormalParametersJSON() throws JSONException {
         return new FormalParamBuilder()
-                .put("sender_number", FormalParamBuilder.Types.STRING, true)
-                .putAdvancedString("message_content", true)
+                .put("ac_power", FormalParamBuilder.BoolStyles.ON_OFF, true)
                 .create();
     }
 
@@ -38,7 +38,7 @@ public class TriggerSMS extends Trigger{
 
     @Override
     public String getName() {
-        return TRIGGER_SMS;
+        return TRIGGER_AC_POWER;
     }
 
     @Override
@@ -49,7 +49,12 @@ public class TriggerSMS extends Trigger{
     @Override
     public HashMap<String, Integer> getSystemRequirementKeys() {
         return new HashMapBuilder<String, Integer>()
-                .put(SMSAdapter.REQUIREMENT_SMS_READ, 1)
+                .put(CommonDeviceConsts.REQUIREMENT_AC_CHARGER, 1)
                 .create();
+    }
+
+    @Override
+    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+        return DefaultCoreModules.ANTARES_COMMON_MODULE;
     }
 }

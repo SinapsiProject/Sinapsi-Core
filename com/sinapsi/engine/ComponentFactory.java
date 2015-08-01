@@ -9,6 +9,7 @@ import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.impl.ActionDescriptor;
 import com.sinapsi.model.impl.FactoryModel;
 import com.sinapsi.model.impl.TriggerDescriptor;
+import com.sinapsi.model.module.SinapsiModuleDescriptor;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -130,16 +131,21 @@ public class ComponentFactory {
 
     private ActionDescriptor newActionDescriptor(String name){
         Action a = (Action) loader.newComponentInstance(MacroComponent.ComponentTypes.ACTION, name);
-        return fm.newActionDescriptor(a.getMinVersion(), a.getName(), a.getFormalParameters());
+        return fm.newActionDescriptor(a.getMinVersion(), a.getName(), a.getFormalParameters(), a.getBelongingSinapsiModule());
     }
 
     private TriggerDescriptor newTriggerDescriptor(String name){
         Trigger t = (Trigger) loader.newComponentInstance(MacroComponent.ComponentTypes.TRIGGER, name);
-        return fm.newTriggerDescriptor(t.getMinVersion(), t.getName(), t.getFormalParameters());
+        return fm.newTriggerDescriptor(t.getMinVersion(), t.getName(), t.getFormalParameters(), t.getBelongingSinapsiModule());
     }
 
     public Trigger newEmptyTrigger(MacroInterface macro){
         Trigger t = new Trigger() {
+            @Override
+            public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+                return null;
+            }
+
             @Override
             public JSONObject getFormalParametersJSON() throws JSONException {
                 return null;
@@ -172,6 +178,11 @@ public class ComponentFactory {
 
     private Trigger newRemoteTrigger(final String componentName, String parameters, MacroInterface macro, int executionDevice){
         Trigger t = new Trigger() {
+            @Override
+            public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+                return null;
+            }
+
             @Override
             public JSONObject getFormalParametersJSON() throws JSONException {
                 return null;
@@ -211,6 +222,11 @@ public class ComponentFactory {
 
     private Action newRemoteAction(final String componentName, String parameters, int executionDevice){
         Action a = new Action() {
+            @Override
+            public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+                return null;
+            }
+
             @Override
             protected void onActivate(ExecutionInterface ei) throws JSONException {
                 //does nothing

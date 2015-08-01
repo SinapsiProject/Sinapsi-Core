@@ -1,5 +1,6 @@
-package com.sinapsi.engine.components;
+package com.sinapsi.engine.components.common;
 
+import com.sinapsi.engine.DefaultCoreModules;
 import com.sinapsi.engine.Event;
 import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
@@ -8,6 +9,7 @@ import com.sinapsi.engine.Trigger;
 import com.sinapsi.engine.parameters.ConnectionStatusChoices;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.parameters.SwitchStatusChoices;
+import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.HashMapBuilder;
 import com.sinapsi.utils.JSONUtils;
 
@@ -64,6 +66,11 @@ public class TriggerWifi extends Trigger {
                 .put("wifi_ssid", FormalParamBuilder.Types.STRING, true)
                 .create();
 
+    }
+
+    @Override
+    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+        return DefaultCoreModules.ANTARES_COMMON_MODULE;
     }
 
 }

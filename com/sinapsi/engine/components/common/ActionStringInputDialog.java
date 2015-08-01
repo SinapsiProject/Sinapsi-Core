@@ -1,11 +1,13 @@
-package com.sinapsi.engine.components;
+package com.sinapsi.engine.components.common;
 
 import com.sinapsi.engine.Action;
+import com.sinapsi.engine.DefaultCoreModules;
 import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.VariableManager;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.DialogAdapter;
+import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.HashMapBuilder;
 import com.sinapsi.utils.JSONUtils;
 
@@ -84,5 +86,10 @@ public class ActionStringInputDialog extends Action{
         return new HashMapBuilder<String, Integer>()
                 .put(DialogAdapter.REQUIREMENT_INPUT_DIALOGS, 1)
                 .create();
+    }
+
+    @Override
+    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
+        return DefaultCoreModules.ANTARES_COMMON_MODULE;
     }
 }
