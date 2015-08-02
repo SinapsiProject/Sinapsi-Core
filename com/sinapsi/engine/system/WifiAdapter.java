@@ -8,7 +8,7 @@ import com.sinapsi.engine.parameters.SwitchStatusChoices;
  * to get wifi infos or manage wifi status or connections.
  *
  */
-public interface WifiAdapter {
+public interface WifiAdapter extends ComponentSystemAdapter {
 
     public static final String SERVICE_WIFI = "SERVICE_WIFI";
     public static final String REQUIREMENT_WIFI = "REQUIREMENT_WIFI";

@@ -22,7 +22,7 @@ public class DefaultCoreModules {
     public static final String SINAPSI_TEAM_DEVELOPER_ID = "SINAPSI";
 
     public static final String ANTARES_CORE_MODULE_NAME = "ANTARES_CORE_MODULE";
-    public static final String ANTARES_COMMON_MODULE_NAME = "ANTARES_COMMON_MODULE";
+    public static final String ANTARES_COMMONS_MODULE_NAME = "ANTARES_COMMONS_MODULE";
 
     public static final SinapsiModule ANTARES_CORE_MODULE = new FactoryModel().newModule(
             SinapsiVersions.ANTARES.ordinal(),
@@ -30,22 +30,26 @@ public class DefaultCoreModules {
             ANTARES_CORE_MODULE_NAME,
             SINAPSI_TEAM_DEVELOPER_ID,
             SinapsiPlatforms.PLATFORM_ALL,
+
             TriggerEngineStart.class,
+
             ActionLog.class,
             ActionSetVariable.class
     );
 
-    public static final SinapsiModule ANTARES_COMMON_MODULE = new FactoryModel().newModule(
+    public static final SinapsiModule ANTARES_COMMONS_MODULE = new FactoryModel().newModule(
             SinapsiVersions.ANTARES.ordinal(),
             SinapsiVersions.ANTARES.ordinal(),
-            ANTARES_COMMON_MODULE_NAME,
+            ANTARES_COMMONS_MODULE_NAME,
             SINAPSI_TEAM_DEVELOPER_ID,
             SinapsiPlatforms.PLATFORM_UNDEFINED,
+
             ActionContinueConfirmDialog.class,
             ActionSendSMS.class,
             ActionSimpleNotification.class,
             ActionStringInputDialog.class,
             ActionWifiState.class,
+
             TriggerACPower.class,
             TriggerSMS.class,
             TriggerWifi.class

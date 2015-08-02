@@ -6,7 +6,7 @@ import java.util.List;
  * Interface used to adapt various system calls
  * to send or read SMSs.
  */
-public interface SMSAdapter{
+public interface SMSAdapter extends ComponentSystemAdapter {
 
     public static final String SERVICE_SMS = "SERVICE_SMS";
     public static final String REQUIREMENT_SMS_READ = "REQUIREMENT_SMS_READ";

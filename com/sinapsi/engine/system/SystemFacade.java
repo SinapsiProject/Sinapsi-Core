@@ -11,10 +11,10 @@ import java.util.Map;
  * system resources management.
  *
  */
-public class SystemFacade {
+public class SystemFacade{
 
 
-    private Map<String, Object> services = new HashMap<>();
+    private Map<String, ComponentSystemAdapter> services = new HashMap<>();
     private Map<String, Integer> systemFeatures = new HashMap<>();
 
     /**
@@ -26,7 +26,7 @@ public class SystemFacade {
      *         then should be down-casted to the needed
      *         class by the service consumer.
      */
-    public Object getSystemService(String key){
+    public ComponentSystemAdapter getSystemService(String key){
         return services.get(key);
     }
 
@@ -39,7 +39,7 @@ public class SystemFacade {
      * @return the invocation object itself, to allow method
      *         chaining.
      */
-    public SystemFacade addSystemService(String key, Object o){
+    public SystemFacade addSystemService(String key, ComponentSystemAdapter o){
         services.put(key, o);
         return this;
     }

@@ -4,7 +4,7 @@ package com.sinapsi.engine.system;
  * Interface used to adapt various system-dependent calls
  * to show various types of dialogs
  */
-public interface NotificationAdapter {
+public interface NotificationAdapter extends ComponentSystemAdapter {
     public static final String SERVICE_NOTIFICATION = "SERVICE_NOTIFICATION";
     public static final String REQUIREMENT_SIMPLE_NOTIFICATIONS = "REQUIREMENT_SIMPLE_NOTIFICATIONS";
 

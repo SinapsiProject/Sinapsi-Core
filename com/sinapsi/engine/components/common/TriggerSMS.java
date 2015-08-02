@@ -57,6 +57,6 @@ public class TriggerSMS extends Trigger{
 
     @Override
     public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMON_MODULE;
+        return DefaultCoreModules.ANTARES_COMMONS_MODULE;
     }
 }

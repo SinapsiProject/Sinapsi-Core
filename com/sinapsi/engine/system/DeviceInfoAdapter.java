@@ -3,7 +3,7 @@ package com.sinapsi.engine.system;
 /**
  * Indipendent system interface that gives a way to return name and model of the device
  */
-public interface DeviceInfoAdapter {
+public interface DeviceInfoAdapter extends ComponentSystemAdapter {
 
     /**
      * Return the name od the device
