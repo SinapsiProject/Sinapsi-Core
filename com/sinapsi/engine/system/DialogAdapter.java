@@ -1,10 +1,14 @@
 package com.sinapsi.engine.system;
 
 
+import com.sinapsi.engine.ComponentSystemAdapter;
+import com.sinapsi.engine.system.annotations.AdapterInterface;
+
 /**
  * Interface used to adapt various system-dependent calls
  * to show various types of dialogs
  */
+@AdapterInterface(DialogAdapter.ADAPTER_DIALOGS)
 public interface DialogAdapter extends ComponentSystemAdapter {
 
     public static final String ADAPTER_DIALOGS = "ADAPTER_DIALOGS";

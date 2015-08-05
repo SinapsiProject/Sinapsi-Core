@@ -1,4 +1,4 @@
-package com.sinapsi.engine.system;
+package com.sinapsi.engine;
 
 import com.sinapsi.model.module.SinapsiModuleMember;
 

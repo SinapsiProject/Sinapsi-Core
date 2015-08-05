@@ -1,11 +1,15 @@
 package com.sinapsi.engine.system;
 
+import com.sinapsi.engine.ComponentSystemAdapter;
+import com.sinapsi.engine.system.annotations.AdapterInterface;
+
 import java.util.List;
 
 /**
  * Interface used to adapt various system calls
  * to send or read SMSs.
  */
+@AdapterInterface(SMSAdapter.ADAPTER_SMS)
 public interface SMSAdapter extends ComponentSystemAdapter {
 
     public static final String ADAPTER_SMS = "ADAPTER_SMS";
