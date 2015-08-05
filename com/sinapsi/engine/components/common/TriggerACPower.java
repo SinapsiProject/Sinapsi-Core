@@ -2,21 +2,16 @@ package com.sinapsi.engine.components.common;
 
 import com.sinapsi.engine.DefaultCoreModules;
 import com.sinapsi.engine.Event;
-import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.Trigger;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
-import com.sinapsi.engine.system.CommonDeviceConsts;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
-import com.sinapsi.utils.HashMapBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 
 /**
@@ -25,7 +20,7 @@ import java.util.HashMap;
  */
 @Component(TriggerACPower.TRIGGER_AC_POWER)
 @Requires({
-        @Requirement(value = 1, name = CommonDeviceConsts.REQUIREMENT_AC_CHARGER)
+        @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_AC_CHARGER)
 })
 public class TriggerACPower extends Trigger {
 

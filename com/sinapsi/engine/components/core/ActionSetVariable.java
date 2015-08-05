@@ -71,23 +71,6 @@ public class ActionSetVariable extends Action {
     }
 
     @Override
-    public String getName() {
-        return ACTION_SET_VARIABLE;
-    }
-
-    @Override
-    public int getMinVersion() {
-        return SinapsiVersions.ANTARES.ordinal();
-    }
-
-    @Override
-    public HashMap<String, Integer> getSystemRequirementKeys() {
-        return null; //NO REQUIREMENTS NEEDED. Integrated in engine.
-        //This means this action is always available, on
-        // every device.
-    }
-
-    @Override
     public SinapsiModuleDescriptor getBelongingSinapsiModule() {
         return DefaultCoreModules.ANTARES_CORE_MODULE;
     }

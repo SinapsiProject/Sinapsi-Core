@@ -12,8 +12,6 @@ import com.sinapsi.engine.system.annotations.AdapterInterface;
 public interface DialogAdapter extends ComponentSystemAdapter {
 
     public static final String ADAPTER_DIALOGS = "ADAPTER_DIALOGS";
-    public static final String REQUIREMENT_SIMPLE_DIALOGS = "REQUIREMENT_SIMPLE_DIALOGS";
-    public static final String REQUIREMENT_INPUT_DIALOGS = "REQUIREMENT_INPUT_DIALOGS";
 
     /**
      * Simple listener interface, to be implemented, in

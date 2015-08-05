@@ -8,5 +8,5 @@ public interface SinapsiModuleDescriptor {
     public int getDefaultEngineVersion();
     public String getModuleName();
     public String getDeveloperID();
-    public String getClientPlatformType();
+    public String getClientPlatformType(); //TODO: check platform at engine initialization
 }

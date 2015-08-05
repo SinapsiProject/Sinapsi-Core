@@ -2,21 +2,16 @@ package com.sinapsi.engine.components.common;
 
 import com.sinapsi.engine.DefaultCoreModules;
 import com.sinapsi.engine.Event;
-import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
-import com.sinapsi.engine.system.SMSAdapter;
 import com.sinapsi.engine.Trigger;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
-import com.sinapsi.utils.HashMapBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 /**
  * TriggerSMS class. This trigger will activate a macro when
@@ -26,7 +21,7 @@ import java.util.HashMap;
  */
 @Component(TriggerSMS.TRIGGER_SMS)
 @Requires({
-        @Requirement(value = 1, name = SMSAdapter.REQUIREMENT_SMS_READ)
+        @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_SMS_READ)
 })
 public class TriggerSMS extends Trigger{
 

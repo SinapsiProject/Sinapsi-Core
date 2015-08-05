@@ -13,8 +13,6 @@ import java.util.List;
 public interface SMSAdapter extends ComponentSystemAdapter {
 
     public static final String ADAPTER_SMS = "ADAPTER_SMS";
-    public static final String REQUIREMENT_SMS_READ = "REQUIREMENT_SMS_READ";
-    public static final String REQUIREMENT_SMS_SEND = "REQUIREMENT_SMS_SEND";
 
     /**
      * Pure SMS-related info container

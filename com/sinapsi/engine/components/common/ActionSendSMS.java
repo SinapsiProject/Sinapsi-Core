@@ -23,7 +23,7 @@ import org.json.JSONObject;
  */
 @Component(ActionSendSMS.ACTION_SEND_SMS)
 @Requires({
-        @Requirement(value = 1, name = SMSAdapter.REQUIREMENT_SMS_SEND)
+        @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_SMS_SEND)
 })
 public class ActionSendSMS extends Action {
 

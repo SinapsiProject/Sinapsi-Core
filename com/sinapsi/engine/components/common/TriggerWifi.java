@@ -27,7 +27,7 @@ import org.json.JSONObject;
  */
 @Component(TriggerWifi.TRIGGER_WIFI)
 @Requires({
-        @Requirement(value = 1, name = WifiAdapter.REQUIREMENT_WIFI)
+        @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_WIFI)
 })
 public class TriggerWifi extends Trigger {
 

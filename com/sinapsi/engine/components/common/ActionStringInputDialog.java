@@ -22,7 +22,7 @@ import org.json.JSONObject;
  */
 @Component(ActionStringInputDialog.ACTION_STRING_INPUT_DIALOG)
 @Requires({
-        @Requirement(value = 1, name = DialogAdapter.REQUIREMENT_INPUT_DIALOGS)
+        @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_INPUT_DIALOGS)
 })
 public class ActionStringInputDialog extends Action{
 

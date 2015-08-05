@@ -28,7 +28,9 @@ import org.json.JSONObject;
  * it relies on ExecutionInterface and DialogAdapter.
  */
 @Component(ActionContinueConfirmDialog.ACTION_CONTINUE_CONFIRM_DIALOG)
-@Requires(@Requirement(value = 1, name = DialogAdapter.REQUIREMENT_SIMPLE_DIALOGS))
+@Requires({
+        @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_SIMPLE_DIALOGS)
+})
 public class ActionContinueConfirmDialog extends Action {
 
     public static final String ACTION_CONTINUE_CONFIRM_DIALOG = "ACTION_CONTINUE_CONFIRM_DIALOG";

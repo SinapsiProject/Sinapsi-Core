@@ -24,7 +24,7 @@ import org.json.JSONObject;
  */
 @Component(ActionWifiState.ACTION_WIFI_STATE)
 @Requires({
-        @Requirement(value = 1,name = WifiAdapter.REQUIREMENT_WIFI)
+        @Requirement(value = 1,name = DefaultCoreModules.REQUIREMENT_WIFI)
 })
 public class ActionWifiState extends Action{
 

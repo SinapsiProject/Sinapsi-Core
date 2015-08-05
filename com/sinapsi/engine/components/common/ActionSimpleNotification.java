@@ -24,7 +24,7 @@ import org.json.JSONObject;
  */
 @Component(ActionSimpleNotification.ACTION_SIMPLE_NOTIFICATION)
 @Requires({
-        @Requirement(value = 1, name = NotificationAdapter.REQUIREMENT_SIMPLE_NOTIFICATIONS)
+        @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_SIMPLE_NOTIFICATIONS)
 })
 public class ActionSimpleNotification extends Action {
 

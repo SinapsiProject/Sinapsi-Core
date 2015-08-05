@@ -20,8 +20,13 @@ import com.sinapsi.model.module.SinapsiModule;
 public class DefaultCoreModules {
 
     public static final String SINAPSI_TEAM_DEVELOPER_ID = "SINAPSI";
+    
+
+    //CORE MODULE - ANTARES VERSION #################################
 
     public static final String ANTARES_CORE_MODULE_NAME = "ANTARES_CORE_MODULE";
+
+    public static final String REQUIREMENT_RESTARTABLE_MACRO_ENGINE = "REQUIREMENT_RESTARTABLE_MACRO_ENGINE";
 
     public static final SinapsiModule ANTARES_CORE_MODULE = new FactoryModel().newModule(
             SinapsiVersions.ANTARES.ordinal(),
@@ -37,7 +42,19 @@ public class DefaultCoreModules {
             ActionSetVariable.class
     );
 
+
+    //COMMONS MODULE - ANTARES VERSION ##############################
+
     public static final String ANTARES_COMMONS_MODULE_NAME = "ANTARES_COMMONS_MODULE";
+
+    public static final String REQUIREMENT_SIMPLE_DIALOGS = "REQUIREMENT_SIMPLE_DIALOGS";
+    public static final String REQUIREMENT_INPUT_DIALOGS = "REQUIREMENT_INPUT_DIALOGS";
+    public static final String REQUIREMENT_SMS_READ = "REQUIREMENT_SMS_READ";
+    public static final String REQUIREMENT_SMS_SEND = "REQUIREMENT_SMS_SEND";
+    public static final String REQUIREMENT_SIMPLE_NOTIFICATIONS = "REQUIREMENT_SIMPLE_NOTIFICATIONS";
+    public static final String REQUIREMENT_WIFI = "REQUIREMENT_WIFI";
+    public static final String REQUIREMENT_INTERCEPT_SCREEN_POWER = "REQUIREMENT_INTERCEPT_SCREEN_POWER";
+    public static final String REQUIREMENT_AC_CHARGER = "REQUIREMENT_AC_CHARGER";
 
     public static final SinapsiModule ANTARES_COMMONS_MODULE = new FactoryModel().newModule(
             SinapsiVersions.ANTARES.ordinal(),
@@ -57,6 +74,8 @@ public class DefaultCoreModules {
             TriggerSMS.class,
             TriggerWifi.class
     );
+
+
 
     private DefaultCoreModules(){} //don't instantiate
 }

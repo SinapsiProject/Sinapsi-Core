@@ -10,7 +10,6 @@ import com.sinapsi.engine.system.annotations.AdapterInterface;
 @AdapterInterface(NotificationAdapter.ADAPTER_NOTIFICATION)
 public interface NotificationAdapter extends ComponentSystemAdapter {
     public static final String ADAPTER_NOTIFICATION = "ADAPTER_NOTIFICATION";
-    public static final String REQUIREMENT_SIMPLE_NOTIFICATIONS = "REQUIREMENT_SIMPLE_NOTIFICATIONS";
 
     /**
      * shows up a simple notification on the system

@@ -14,7 +14,6 @@ import com.sinapsi.engine.system.annotations.AdapterInterface;
 public interface WifiAdapter extends ComponentSystemAdapter {
 
     public static final String ADAPTER_WIFI = "ADAPTER_WIFI";
-    public static final String REQUIREMENT_WIFI = "REQUIREMENT_WIFI";
 
     /**
      * Getter of the main wifi adapter's status.
