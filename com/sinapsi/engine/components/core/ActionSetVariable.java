@@ -1,11 +1,15 @@
 package com.sinapsi.engine.components.core;
 
 import com.sinapsi.engine.DefaultCoreModules;
+import com.sinapsi.engine.SinapsiPlatforms;
 import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.VariableManager;
 import com.sinapsi.engine.Action;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.engine.system.annotations.Component;
+import com.sinapsi.engine.system.annotations.Requires;
+import com.sinapsi.model.MacroComponent;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.JSONUtils;
 
@@ -22,14 +26,16 @@ import java.util.HashMap;
  * Notice that this action is completely platform-independent:
  * it relies on other facades/adapters in ExecutionInterface.
  */
+@Component(ActionSetVariable.ACTION_SET_VARIABLE)
+@Requires({})
 public class ActionSetVariable extends Action {
 
     public static final String ACTION_SET_VARIABLE = "ACTION_SET_VARIABLE";
 
 
     @Override
-    public void onActivate(final ExecutionInterface di) throws JSONException{
-        JSONObject pjo = getParsedParams(di.getLocalVars(),di.getGlobalVars());
+    public void onActivate(final ExecutionInterface di) throws JSONException {
+        JSONObject pjo = getParsedParams(di.getLocalVars(), di.getGlobalVars());
         String strname = null;
         String strscope = null;
         String strtype = null;
@@ -43,7 +49,7 @@ public class ActionSetVariable extends Action {
         VariableManager.Scopes scope = VariableManager.Scopes.valueOf(strscope);
         VariableManager.Types type = VariableManager.Types.valueOf(strtype);
 
-        switch (scope){
+        switch (scope) {
             case LOCAL:
                 di.getLocalVars().putVar(strname, type, strvalue);
                 break;
@@ -77,8 +83,8 @@ public class ActionSetVariable extends Action {
     @Override
     public HashMap<String, Integer> getSystemRequirementKeys() {
         return null; //NO REQUIREMENTS NEEDED. Integrated in engine.
-                     //This means this action is always available, on
-                     // every device.
+        //This means this action is always available, on
+        // every device.
     }
 
     @Override

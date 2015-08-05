@@ -1,18 +1,17 @@
 package com.sinapsi.engine.components.common;
 
 import com.sinapsi.engine.DefaultCoreModules;
-import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.system.NotificationAdapter;
 import com.sinapsi.engine.Action;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.engine.system.annotations.Component;
+import com.sinapsi.engine.system.annotations.Requirement;
+import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
-import com.sinapsi.utils.HashMapBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 /**
  * ActionSimpleNotification class. This Action will show a
@@ -23,6 +22,10 @@ import java.util.HashMap;
  * it relies on other facades/adapters like SystemFacade and
  * NotificationAdapter.
  */
+@Component(ActionSimpleNotification.ACTION_SIMPLE_NOTIFICATION)
+@Requires({
+        @Requirement(value = 1, name = NotificationAdapter.REQUIREMENT_SIMPLE_NOTIFICATIONS)
+})
 public class ActionSimpleNotification extends Action {
 
     public static final String ACTION_SIMPLE_NOTIFICATION = "ACTION_SIMPLE_NOTIFICATION";
@@ -36,7 +39,7 @@ public class ActionSimpleNotification extends Action {
         title = pjo.getString("notification_title");
         message = pjo.getString("notification_message");
 
-        ((NotificationAdapter) di.getSystemFacade().getSystemService(NotificationAdapter.SERVICE_NOTIFICATION)).showSimpleNotification(title,message);
+        ((NotificationAdapter) di.getSystemFacade().getSystemService(NotificationAdapter.ADAPTER_NOTIFICATION)).showSimpleNotification(title,message);
     }
 
     @Override
@@ -44,23 +47,6 @@ public class ActionSimpleNotification extends Action {
         return new FormalParamBuilder()
                 .put("notification_title", FormalParamBuilder.Types.STRING, false)
                 .put("notification_message", FormalParamBuilder.Types.STRING, false)
-                .create();
-    }
-
-    @Override
-    public String getName() {
-        return ACTION_SIMPLE_NOTIFICATION;
-    }
-
-    @Override
-    public int getMinVersion() {
-        return SinapsiVersions.ANTARES.ordinal();
-    }
-
-    @Override
-    public HashMap<String, Integer> getSystemRequirementKeys() {
-        return new HashMapBuilder<String, Integer>()
-                .put(NotificationAdapter.REQUIREMENT_SIMPLE_NOTIFICATIONS, 1)
                 .create();
     }
 

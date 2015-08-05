@@ -2,6 +2,9 @@ package com.sinapsi.engine;
 
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.engine.system.annotations.Component;
+import com.sinapsi.engine.system.annotations.Requirement;
+import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.DeviceInterface;
 import com.sinapsi.model.DistributedComponent;
 import com.sinapsi.model.ParameterizedActual;
@@ -11,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -240,4 +244,32 @@ public abstract class Action implements ParameterizedActual, DistributedComponen
      * @return the JSONObject containing the formal parameters
      */
     public abstract JSONObject getFormalParametersJSON() throws JSONException;
+
+
+    @Override
+    public String getName() {
+        Component annot = this.getClass().getAnnotation(Component.class);
+        if(annot == null) throw new MissingAnnotationException(this.getClass());
+        return annot.value();
+    }
+
+    @Override
+    public int getMinVersion() {
+        Component annot = this.getClass().getAnnotation(Component.class);
+        if(annot == null) throw new MissingAnnotationException(this.getClass());
+        return annot.engineMinVersion().ordinal();
+    }
+
+    @Override
+    public HashMap<String, Integer> getSystemRequirementKeys() {
+        Requires annot = this.getClass().getAnnotation(Requires.class);
+        if(annot == null) throw new MissingAnnotationException(this.getClass());
+        else{
+            HashMap<String, Integer> reqs = new HashMap<>();
+            for(Requirement r: annot.value()){
+                reqs.put(r.name(), r.value());
+            }
+            return reqs;
+        }
+    }
 }

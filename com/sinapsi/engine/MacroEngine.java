@@ -2,6 +2,7 @@ package com.sinapsi.engine;
 
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.execution.RemoteExecutionDescriptor;
+import com.sinapsi.engine.execution.WebExecutionInterface;
 import com.sinapsi.engine.log.SinapsiLog;
 import com.sinapsi.model.DeviceInterface;
 import com.sinapsi.model.MacroComponent;
@@ -54,13 +55,33 @@ public class MacroEngine {
 
     public MacroEngine(DeviceInterface currentDevice,
                        ActivationManager activationManager,
+                       WebExecutionInterface webExecutionInterface,
+                       RequirementResolver resolver,
+                       PlatformDependantObjectProvider objectProvider,
                        SinapsiLog sinapsiLog,
                        SinapsiModule... modules){
+
         device = currentDevice;
         activator = activationManager;
         log = sinapsiLog;
 
         EngineModuleManager moduleManager = new EngineModuleManager(this, modules);
+
+        VariableManager globalVars = new VariableManager();
+
+        activationManager.init(new ExecutionInterface(
+                new SystemFacadeGenerator(
+                        moduleManager.getAllComponentSystemAdapters(),
+                        resolver,
+                        objectProvider).generateSystemFacade(),
+                device,
+                webExecutionInterface,
+                globalVars,
+                log
+        ));
+
+
+
         Class<? extends MacroComponent>[] componentClasses = moduleManager.getAllComponentClasses();
 
         factory = new ComponentFactory(device, log, componentClasses);

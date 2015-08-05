@@ -1,18 +1,17 @@
 package com.sinapsi.engine.components.common;
 
 import com.sinapsi.engine.DefaultCoreModules;
-import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.system.WifiAdapter;
 import com.sinapsi.engine.Action;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.engine.system.annotations.Component;
+import com.sinapsi.engine.system.annotations.Requirement;
+import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
-import com.sinapsi.utils.HashMapBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 /**
  * ActionWifiState class. This Action will turn on or off the
@@ -23,15 +22,18 @@ import java.util.HashMap;
  * it relies on other facades/adapters like SystemFacade and
  * WifiAdapter.
  */
+@Component(ActionWifiState.ACTION_WIFI_STATE)
+@Requires({
+        @Requirement(value = 1,name = WifiAdapter.REQUIREMENT_WIFI)
+})
 public class ActionWifiState extends Action{
-
 
     public static final String ACTION_WIFI_STATE = "ACTION_WIFI_STATE";
 
     @Override
     public void onActivate(final ExecutionInterface s) throws JSONException{
 
-        WifiAdapter wa = (WifiAdapter) s.getSystemFacade().getSystemService(WifiAdapter.SERVICE_WIFI);
+        WifiAdapter wa = (WifiAdapter) s.getSystemFacade().getSystemService(WifiAdapter.ADAPTER_WIFI);
         JSONObject pjo = getParsedParams(s.getLocalVars(),s.getGlobalVars());
         boolean activate;
 
@@ -40,24 +42,6 @@ public class ActionWifiState extends Action{
         if (activate) wa.setStatus(true);
         else wa.setStatus(false);
 
-    }
-
-    @Override
-    public String getName() {
-        return ACTION_WIFI_STATE;
-    }
-
-    @Override
-    public int getMinVersion() {
-        return SinapsiVersions.ANTARES.ordinal();
-    }
-
-
-    @Override
-    public HashMap<String, Integer> getSystemRequirementKeys() {
-        return new HashMapBuilder<String,Integer>()
-                .put(WifiAdapter.REQUIREMENT_WIFI, 1)
-                .create();
     }
 
     @Override

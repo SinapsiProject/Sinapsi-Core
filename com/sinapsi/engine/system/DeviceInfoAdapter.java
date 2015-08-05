@@ -5,6 +5,8 @@ package com.sinapsi.engine.system;
  */
 public interface DeviceInfoAdapter extends ComponentSystemAdapter {
 
+    public static final String SERVICE_DEVICE_INFO = "SERVICE_DEVICE_INFO";
+
     /**
      * Return the name od the device
      * @return

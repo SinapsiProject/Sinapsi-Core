@@ -7,6 +7,9 @@ import com.sinapsi.engine.Trigger;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.CommonDeviceConsts;
+import com.sinapsi.engine.system.annotations.Component;
+import com.sinapsi.engine.system.annotations.Requirement;
+import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.HashMapBuilder;
 
@@ -20,6 +23,10 @@ import java.util.HashMap;
  * TriggerACPower class. This trigger will activate a macro when
  * the AC charger is connected or disconnected.
  */
+@Component(TriggerACPower.TRIGGER_AC_POWER)
+@Requires({
+        @Requirement(value = 1, name = CommonDeviceConsts.REQUIREMENT_AC_CHARGER)
+})
 public class TriggerACPower extends Trigger {
 
     public static final String TRIGGER_AC_POWER = "TRIGGER_AC_POWER";
@@ -36,22 +43,6 @@ public class TriggerACPower extends Trigger {
         return e.getJSONObject();
     }
 
-    @Override
-    public String getName() {
-        return TRIGGER_AC_POWER;
-    }
-
-    @Override
-    public int getMinVersion() {
-        return SinapsiVersions.ANTARES.ordinal();
-    }
-
-    @Override
-    public HashMap<String, Integer> getSystemRequirementKeys() {
-        return new HashMapBuilder<String, Integer>()
-                .put(CommonDeviceConsts.REQUIREMENT_AC_CHARGER, 1)
-                .create();
-    }
 
     @Override
     public SinapsiModuleDescriptor getBelongingSinapsiModule() {

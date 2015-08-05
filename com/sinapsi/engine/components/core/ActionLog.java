@@ -1,10 +1,14 @@
 package com.sinapsi.engine.components.core;
 
 import com.sinapsi.engine.DefaultCoreModules;
+import com.sinapsi.engine.SinapsiPlatforms;
 import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.Action;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.engine.system.annotations.Component;
+import com.sinapsi.engine.system.annotations.Requires;
+import com.sinapsi.model.MacroComponent;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 
 import org.json.JSONException;
@@ -20,6 +24,8 @@ import java.util.HashMap;
  * Notice that this action is completely platform-independent:
  * it relies on other facades/adapters in ExecutionInterface.
  */
+@Component(ActionLog.ACTION_LOG)
+@Requires({})
 public class ActionLog extends Action {
 
     public static final String ACTION_LOG = "ACTION_LOG";
@@ -39,25 +45,6 @@ public class ActionLog extends Action {
         return new FormalParamBuilder()
                 .put("log_message", FormalParamBuilder.Types.STRING, false)
                 .create();
-    }
-
-
-
-    @Override
-    public String getName() {
-        return ACTION_LOG;
-    }
-
-    @Override
-    public int getMinVersion() {
-        return SinapsiVersions.ANTARES.ordinal();
-    }
-
-    @Override
-    public HashMap<String, Integer> getSystemRequirementKeys() {
-        return null; //NO REQUIREMENTS NEEDED. Integrated in engine.
-        //This means this action is always available, on
-        // every device.
     }
 
     @Override

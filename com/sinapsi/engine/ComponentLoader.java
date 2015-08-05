@@ -1,5 +1,6 @@
 package com.sinapsi.engine;
 
+import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.model.MacroComponent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,25 +30,37 @@ public class  ComponentLoader {
     public boolean loadClasses(){
         boolean allOk = true;
         for(Class<? extends MacroComponent> c: classes){
-            MacroComponent mc = null;
-            try {
-                mc = c.newInstance();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if (mc == null){
-                errorClasses.add(c);
-                allOk = false;
+            Component componentAnnotation = c.getAnnotation(Component.class);
+
+            if(componentAnnotation == null){
+                MacroComponent mc = null;
+                try {
+                    mc = c.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (mc == null){
+                    errorClasses.add(c);
+                    allOk = false;
+                } else {
+                    switch (mc.getComponentType()){
+                        case TRIGGER:
+                            triggerClasses.put(mc.getName(), (Class<? extends Trigger>)c);
+                            break;
+                        case ACTION:
+                            actionClasses.put(mc.getName(), (Class<? extends Action>)c);
+                            break;
+                    }
+                }
             } else {
-                switch (mc.getComponentType()){
-                    case TRIGGER:
-                        triggerClasses.put(mc.getName(), (Class<? extends Trigger>)c);
-                        break;
-                    case ACTION:
-                        actionClasses.put(mc.getName(), (Class<? extends Action>)c);
-                        break;
+                if(Trigger.class.isAssignableFrom(c))
+                    triggerClasses.put(componentAnnotation.value(), (Class<? extends Trigger>)c);
+                else if(Action.class.isAssignableFrom(c)){
+                    actionClasses.put(componentAnnotation.value(), (Class<? extends Action>)c);
                 }
             }
+
+
 
         }
 

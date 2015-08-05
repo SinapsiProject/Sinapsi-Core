@@ -2,6 +2,9 @@ package com.sinapsi.engine;
 
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.parameters.ActualParamBuilder;
+import com.sinapsi.engine.system.annotations.Component;
+import com.sinapsi.engine.system.annotations.Requirement;
+import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.DeviceInterface;
 import com.sinapsi.model.DistributedComponent;
 import com.sinapsi.model.MacroInterface;
@@ -13,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -330,5 +334,32 @@ public abstract class Trigger implements ParameterizedActual, DistributedCompone
      */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @Override
+    public String getName() {
+        Component annot = this.getClass().getAnnotation(Component.class);
+        if(annot == null) throw new MissingAnnotationException(this.getClass());
+        return annot.value();
+    }
+
+    @Override
+    public int getMinVersion() {
+        Component annot = this.getClass().getAnnotation(Component.class);
+        if(annot == null) throw new MissingAnnotationException(this.getClass());
+        return annot.engineMinVersion().ordinal();
+    }
+
+    @Override
+    public HashMap<String, Integer> getSystemRequirementKeys() {
+        Requires annot = this.getClass().getAnnotation(Requires.class);
+        if(annot == null) throw new MissingAnnotationException(this.getClass());
+        else{
+            HashMap<String, Integer> reqs = new HashMap<>();
+            for(Requirement r: annot.value()){
+                reqs.put(r.name(), r.value());
+            }
+            return reqs;
+        }
     }
 }

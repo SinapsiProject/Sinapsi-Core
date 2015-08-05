@@ -1,18 +1,17 @@
 package com.sinapsi.engine.components.common;
 
 import com.sinapsi.engine.DefaultCoreModules;
-import com.sinapsi.engine.SinapsiVersions;
 import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.system.DialogAdapter;
 import com.sinapsi.engine.Action;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.engine.system.annotations.Component;
+import com.sinapsi.engine.system.annotations.Requirement;
+import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
-import com.sinapsi.utils.HashMapBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 /**
  * ActionContinueConfirmDialog class. This Action will show a
@@ -28,13 +27,15 @@ import java.util.HashMap;
  * Notice that this action is completely platform-independent:
  * it relies on ExecutionInterface and DialogAdapter.
  */
+@Component(ActionContinueConfirmDialog.ACTION_CONTINUE_CONFIRM_DIALOG)
+@Requires(@Requirement(value = 1, name = DialogAdapter.REQUIREMENT_SIMPLE_DIALOGS))
 public class ActionContinueConfirmDialog extends Action {
 
     public static final String ACTION_CONTINUE_CONFIRM_DIALOG = "ACTION_CONTINUE_CONFIRM_DIALOG";
 
     @Override
     public void onActivate(final ExecutionInterface di) throws JSONException{
-        DialogAdapter da = (DialogAdapter) di.getSystemFacade().getSystemService(DialogAdapter.SERVICE_DIALOGS);
+        DialogAdapter da = (DialogAdapter) di.getSystemFacade().getSystemService(DialogAdapter.ADAPTER_DIALOGS);
         JSONObject pjo = getParsedParams(di.getLocalVars(),di.getGlobalVars());
         String message = pjo.getString("dialog_message");
         String title = pjo.getString("dialog_title");
@@ -59,23 +60,6 @@ public class ActionContinueConfirmDialog extends Action {
         return new FormalParamBuilder()
                 .put("dialog_message", FormalParamBuilder.Types.STRING, false)
                 .put("dialog_title", FormalParamBuilder.Types.STRING, false)
-                .create();
-    }
-
-    @Override
-    public String getName() {
-        return ACTION_CONTINUE_CONFIRM_DIALOG;
-    }
-
-    @Override
-    public int getMinVersion() {
-        return SinapsiVersions.ANTARES.ordinal();
-    }
-
-    @Override
-    public HashMap<String, Integer> getSystemRequirementKeys() {
-        return new HashMapBuilder<String, Integer>()
-                .put(DialogAdapter.REQUIREMENT_SIMPLE_DIALOGS, 1)
                 .create();
     }
 

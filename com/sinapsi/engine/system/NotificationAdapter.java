@@ -5,7 +5,7 @@ package com.sinapsi.engine.system;
  * to show various types of dialogs
  */
 public interface NotificationAdapter extends ComponentSystemAdapter {
-    public static final String SERVICE_NOTIFICATION = "SERVICE_NOTIFICATION";
+    public static final String ADAPTER_NOTIFICATION = "ADAPTER_NOTIFICATION";
     public static final String REQUIREMENT_SIMPLE_NOTIFICATIONS = "REQUIREMENT_SIMPLE_NOTIFICATIONS";
 
     /**

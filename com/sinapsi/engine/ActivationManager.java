@@ -20,15 +20,6 @@ public abstract class ActivationManager {
     private boolean enabled = false;
 
     /**
-     * Ctor. Sets the default execution interface for this activation manager.
-     * However, at execution phase this is cloned into a new instance.
-     * @param defaultExecutionInterface the default execution interface
-     */
-    public ActivationManager(ExecutionInterface defaultExecutionInterface) {
-        this.executionInterface = defaultExecutionInterface;
-    }
-
-    /**
      * Registers a trigger for activation.
      * Override this to handle system dependent trigger registration
      * @param t the trigger
@@ -48,7 +39,12 @@ public abstract class ActivationManager {
         if(t.getName().equals(TriggerEngineStart.TRIGGER_ENGINE_START)) engineStartTriggers.remove(t);
     }
 
-
+    /**
+     * Called by the engine to initialize the ActivatorManager
+     */
+    public void init(ExecutionInterface defaultExecutionInterface){
+        this.executionInterface = defaultExecutionInterface;
+    }
 
     /**
      * Internal event, called by MacroEngine class, useful to activate the
