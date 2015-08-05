@@ -13,26 +13,35 @@ import java.util.List;
  */
 public class SystemFacadeGenerator {
 
-    private RequirementResolver resolver;
+    private RequirementResolver defaultResolver;
     private PlatformDependantObjectProvider provider;
     private final String currentPlatform;
+    private List<RequirementResolver> modulesResolvers = new ArrayList<>();
     private List<Class<? extends ComponentSystemAdapter>> adapterClasses = new ArrayList<>();
 
     public SystemFacadeGenerator(Class<? extends ComponentSystemAdapter>[] adapterClasses,
-                                 RequirementResolver requirementResolver,
                                  PlatformDependantObjectProvider objectProvider,
-                                 String currentPlatform) {
-        resolver = requirementResolver;
+                                 String currentPlatform,
+                                 DefaultRequirementResolver requirementResolver,
+                                 RequirementResolver... modulesResolvers) {
+        defaultResolver = requirementResolver;
         provider = objectProvider;
         this.currentPlatform = currentPlatform;
+
+        Collections.addAll(this.modulesResolvers, modulesResolvers);
 
         Collections.addAll(this.adapterClasses, adapterClasses);
     }
 
     public SystemFacade generateSystemFacade() {
         SystemFacade sf = new SystemFacade();
-        
-        resolver.resolveRequirements(sf);
+
+        defaultResolver.resolveRequirements(sf);
+
+        for(RequirementResolver rr: modulesResolvers){
+            rr.setPlatformDependantObjects(getAdapterInitializationObjects(rr.getPlatformDependantObjectsKeys()));
+            rr.resolveRequirements(sf);
+        }
 
         for (Class<? extends ComponentSystemAdapter> c : adapterClasses) {
             AdapterImplementation annot = c.getAnnotation(AdapterImplementation.class);

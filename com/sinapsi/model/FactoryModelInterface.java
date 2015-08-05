@@ -1,5 +1,6 @@
 package com.sinapsi.model;
 
+import com.sinapsi.engine.RequirementResolver;
 import com.sinapsi.model.impl.ActionDescriptor;
 import com.sinapsi.model.impl.TriggerDescriptor;
 import com.sinapsi.model.module.SinapsiModule;
@@ -77,5 +78,5 @@ public interface FactoryModelInterface {
     public SinapsiModuleDescriptor newModuleDescriptor(int minVersion, int defVersion, String name, String devId, String platform);
 
     @SuppressWarnings("unchecked")
-    public SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, Class<? extends SinapsiModuleMember>... members);
+    public SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, RequirementResolver resolver, Class<? extends SinapsiModuleMember>... members);
 }

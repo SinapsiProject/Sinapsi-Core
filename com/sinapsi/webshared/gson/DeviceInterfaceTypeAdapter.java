@@ -36,7 +36,7 @@ public class DeviceInterfaceTypeAdapter extends TypeAdapter<DeviceInterface> {
 
         o.name(DEVICE_ID).value(d.getId());
         o.name(DEVICE_NAME).value(d.getName());
-        o.name(DEVICE_TYPE).value(d.getType());
+        o.name(DEVICE_TYPE).value(d.getPlatformType());
         o.name(DEVICE_MODEL).value(d.getModel());
         o.name(DEVICE_SINAPSI_VERSION).value(d.getVersion());
 

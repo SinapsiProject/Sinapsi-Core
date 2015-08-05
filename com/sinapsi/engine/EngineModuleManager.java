@@ -17,6 +17,7 @@ public class EngineModuleManager {
     private MacroEngine engine;
     private List<Class<? extends MacroComponent>> components = new ArrayList<>();
     private List<Class<? extends ComponentSystemAdapter>> adapters = new ArrayList<>();
+    private List<RequirementResolver> resolvers = new ArrayList<>();
 
     public EngineModuleManager(MacroEngine engine,
                                SinapsiModule... modules) {
@@ -29,6 +30,8 @@ public class EngineModuleManager {
     @SuppressWarnings("unchecked")
     private void extractClasses() {
         for(SinapsiModule m: modules){
+            if(m.getRequirementResolver() != null)
+                resolvers.add(m.getRequirementResolver());
             for(Class<? extends SinapsiModuleMember> mm: m.getMembers()){
                 if(doesClassImplementMacroComponent(mm))
                     components.add((Class<? extends MacroComponent>) mm);
@@ -44,9 +47,13 @@ public class EngineModuleManager {
         return components.toArray((Class<? extends MacroComponent>[])new Class<?>[components.size()]);
     }
 
-    public Class<? extends ComponentSystemAdapter>[] getAllComponentSystemAdapters() {
+    public Class<? extends ComponentSystemAdapter>[] getAllComponentSystemAdapterClasses() {
         //noinspection unchecked
         return adapters.toArray((Class<? extends ComponentSystemAdapter>[])new Class<?>[adapters.size()]);
+    }
+
+    public RequirementResolver[] getAllRequirementResolvers() {
+        return resolvers.toArray(new RequirementResolver[resolvers.size()]);
     }
 
     public MacroEngine getEngine() {

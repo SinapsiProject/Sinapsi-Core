@@ -56,7 +56,7 @@ public class MacroEngine {
     public MacroEngine(DeviceInterface currentDevice,
                        ActivationManager activationManager,
                        WebExecutionInterface webExecutionInterface,
-                       RequirementResolver resolver,
+                       DefaultRequirementResolver defaultResolver,
                        PlatformDependantObjectProvider objectProvider,
                        SinapsiLog sinapsiLog,
                        SinapsiModule... modules){
@@ -71,9 +71,12 @@ public class MacroEngine {
 
         activationManager.init(new ExecutionInterface(
                 new SystemFacadeGenerator(
-                        moduleManager.getAllComponentSystemAdapters(),
-                        resolver,
-                        objectProvider).generateSystemFacade(),
+                        moduleManager.getAllComponentSystemAdapterClasses(),
+                        objectProvider,
+                        currentDevice.getPlatformType(),
+                        defaultResolver,
+                        moduleManager.getAllRequirementResolvers()
+                ).generateSystemFacade(),
                 device,
                 webExecutionInterface,
                 globalVars,

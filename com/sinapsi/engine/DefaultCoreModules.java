@@ -22,7 +22,6 @@ public class DefaultCoreModules {
     public static final String SINAPSI_TEAM_DEVELOPER_ID = "SINAPSI";
 
     public static final String ANTARES_CORE_MODULE_NAME = "ANTARES_CORE_MODULE";
-    public static final String ANTARES_COMMONS_MODULE_NAME = "ANTARES_COMMONS_MODULE";
 
     public static final SinapsiModule ANTARES_CORE_MODULE = new FactoryModel().newModule(
             SinapsiVersions.ANTARES.ordinal(),
@@ -30,6 +29,7 @@ public class DefaultCoreModules {
             ANTARES_CORE_MODULE_NAME,
             SINAPSI_TEAM_DEVELOPER_ID,
             SinapsiPlatforms.PLATFORM_ALL,
+            null,
 
             TriggerEngineStart.class,
 
@@ -37,13 +37,16 @@ public class DefaultCoreModules {
             ActionSetVariable.class
     );
 
+    public static final String ANTARES_COMMONS_MODULE_NAME = "ANTARES_COMMONS_MODULE";
+
     public static final SinapsiModule ANTARES_COMMONS_MODULE = new FactoryModel().newModule(
             SinapsiVersions.ANTARES.ordinal(),
             SinapsiVersions.ANTARES.ordinal(),
             ANTARES_COMMONS_MODULE_NAME,
             SINAPSI_TEAM_DEVELOPER_ID,
             SinapsiPlatforms.PLATFORM_UNDEFINED,
-
+            null,
+            
             ActionContinueConfirmDialog.class,
             ActionSendSMS.class,
             ActionSimpleNotification.class,

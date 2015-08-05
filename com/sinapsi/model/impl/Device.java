@@ -76,7 +76,7 @@ public class Device extends CommunicationInfo implements DeviceInterface {
      * @return
      */
     @Override
-    public String getType() {
+    public String getPlatformType() {
         return type;
     }
 

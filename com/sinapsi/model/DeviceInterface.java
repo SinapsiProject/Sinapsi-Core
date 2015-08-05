@@ -10,7 +10,7 @@ public interface DeviceInterface  {
     public int getVersion();
     public String getName();
     public String getModel();
-    public String getType();
+    public String getPlatformType();
     public UserInterface getUser();
     
     public void setName(String name);
