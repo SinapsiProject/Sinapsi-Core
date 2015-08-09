@@ -97,7 +97,7 @@ public class MacroEngine {
 
             sinapsiLog.log("MACROENGINE", "Engine initialized.");
         }else{
-
+            //TODO: handle failure
         }
 
 
