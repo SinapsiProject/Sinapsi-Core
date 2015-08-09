@@ -1,11 +1,10 @@
 package com.sinapsi.engine.builder;
 
-import com.sinapsi.engine.Action;
-import com.sinapsi.engine.Trigger;
+import com.sinapsi.engine.component.Action;
+import com.sinapsi.engine.component.Trigger;
 import com.sinapsi.engine.parameters.ActualParamBuilder;
 import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.model.MacroComponent;
-import com.sinapsi.model.impl.TriggerDescriptor;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -1,5 +1,7 @@
 package com.sinapsi.engine;
 
+import com.sinapsi.engine.system.ComponentSystemAdapter;
+import com.sinapsi.engine.requirements.RequirementResolver;
 import com.sinapsi.model.MacroComponent;
 import com.sinapsi.model.module.SinapsiModule;
 import com.sinapsi.model.module.SinapsiModuleName;

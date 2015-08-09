@@ -1,6 +1,6 @@
 package com.sinapsi.webshared;
 
-import com.sinapsi.engine.ComponentFactory;
+import com.sinapsi.engine.component.ComponentFactory;
 
 /**
  *

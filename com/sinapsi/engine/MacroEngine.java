@@ -4,6 +4,12 @@ import com.sinapsi.engine.execution.ExecutionInterface;
 import com.sinapsi.engine.execution.RemoteExecutionDescriptor;
 import com.sinapsi.engine.execution.WebExecutionInterface;
 import com.sinapsi.engine.log.SinapsiLog;
+import com.sinapsi.engine.activation.ActivationManager;
+import com.sinapsi.engine.component.ComponentFactory;
+import com.sinapsi.engine.requirements.DefaultRequirementResolver;
+import com.sinapsi.engine.system.PlatformDependantObjectProvider;
+import com.sinapsi.engine.system.SystemFacadeGenerator;
+import com.sinapsi.engine.variables.VariableManager;
 import com.sinapsi.model.DeviceInterface;
 import com.sinapsi.model.MacroComponent;
 import com.sinapsi.model.MacroInterface;
@@ -145,7 +151,7 @@ public class MacroEngine {
 
     public void continueMacro(RemoteExecutionDescriptor red) throws MissingMacroException{
 
-        ExecutionInterface ei = activator.executionInterface.cloneInstance();
+        ExecutionInterface ei = activator.getDefaultExecutionInterface().cloneInstance();
         MacroInterface m = getMacroById(red.getIdMacro());
 
         if(m == null) throw new MissingMacroException();
@@ -204,13 +210,13 @@ public class MacroEngine {
 
     public List<TriggerDescriptor> getAvailableTriggerDescriptors(){
         List<TriggerDescriptor> result = new ArrayList<>();
-        result.addAll(getComponentFactory().getAvailableTriggerDescriptors(activator.executionInterface.getSystemFacade()));
+        result.addAll(getComponentFactory().getAvailableTriggerDescriptors(activator.getDefaultExecutionInterface().getSystemFacade()));
         return result;
     }
 
     public List<ActionDescriptor> getAvailableActionDescriptors(){
         List<ActionDescriptor> result = new ArrayList<>();
-        result.addAll(getComponentFactory().getAvailableActionDescriptors(activator.executionInterface.getSystemFacade()));
+        result.addAll(getComponentFactory().getAvailableActionDescriptors(activator.getDefaultExecutionInterface().getSystemFacade()));
         return result;
     }
     

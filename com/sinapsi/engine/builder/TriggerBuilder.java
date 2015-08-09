@@ -1,19 +1,11 @@
 package com.sinapsi.engine.builder;
 
-import com.sinapsi.engine.ComponentFactory;
-import com.sinapsi.engine.Trigger;
-import com.sinapsi.engine.parameters.ActualParamBuilder;
-import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.engine.component.ComponentFactory;
+import com.sinapsi.engine.component.Trigger;
 import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.impl.ComponentsAvailability;
 import com.sinapsi.model.impl.TriggerDescriptor;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**

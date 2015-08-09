@@ -1,7 +1,6 @@
 package com.sinapsi.engine.execution;
 
-import com.sinapsi.engine.VariableManager;
-import com.sinapsi.model.impl.Macro;
+import com.sinapsi.engine.variables.VariableManager;
 
 import java.util.Deque;
 

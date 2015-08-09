@@ -1,6 +1,6 @@
 package com.sinapsi.model.module;
 
-import com.sinapsi.engine.RequirementResolver;
+import com.sinapsi.engine.requirements.RequirementResolver;
 
 import java.util.List;
 

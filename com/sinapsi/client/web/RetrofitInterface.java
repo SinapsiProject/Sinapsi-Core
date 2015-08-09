@@ -1,6 +1,5 @@
 package com.sinapsi.client.web;
 
-import com.sinapsi.engine.Trigger;
 import com.sinapsi.engine.execution.RemoteExecutionDescriptor;
 import com.sinapsi.model.DeviceInterface;
 import com.sinapsi.model.MacroComponent;
@@ -13,7 +12,6 @@ import com.sinapsi.model.impl.SyncOperation;
 import com.sinapsi.model.impl.TriggerDescriptor;
 import com.sinapsi.model.impl.User;
 import com.sinapsi.utils.Pair;
-import com.sinapsi.utils.Triplet;
 
 import java.util.List;
 

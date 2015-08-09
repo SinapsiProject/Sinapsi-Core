@@ -1,6 +1,6 @@
 package com.sinapsi.engine.execution;
 
-import com.sinapsi.engine.Action;
+import com.sinapsi.engine.component.Action;
 
 import java.util.List;
 

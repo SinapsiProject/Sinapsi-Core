@@ -8,7 +8,7 @@ import com.sinapsi.client.persistence.MemoryLocalDBManager;
 import com.sinapsi.client.persistence.syncmodel.MacroChange;
 import com.sinapsi.client.persistence.syncmodel.MacroSyncConflict;
 import com.sinapsi.client.web.SinapsiWebServiceFacade;
-import com.sinapsi.engine.Action;
+import com.sinapsi.engine.component.Action;
 import com.sinapsi.model.DeviceInterface;
 import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.impl.FactoryModel;

@@ -3,11 +3,13 @@
  */
 package com.sinapsi.model.impl;
 
-import com.sinapsi.engine.RequirementResolver;
+import com.sinapsi.engine.requirements.RequirementResolver;
 import com.sinapsi.model.DeviceInterface;
 import com.sinapsi.model.FactoryModelInterface;
 import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.UserInterface;
+import com.sinapsi.model.impl.module.SinapsiModuleDescriptorImpl;
+import com.sinapsi.model.impl.module.SinapsiModuleImpl;
 import com.sinapsi.model.module.SinapsiModule;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.model.module.SinapsiModuleName;

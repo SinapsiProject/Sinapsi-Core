@@ -1,6 +1,6 @@
 package com.sinapsi.model;
 
-import com.sinapsi.engine.RequirementResolver;
+import com.sinapsi.engine.requirements.RequirementResolver;
 import com.sinapsi.model.impl.ActionDescriptor;
 import com.sinapsi.model.impl.TriggerDescriptor;
 import com.sinapsi.model.module.SinapsiModule;

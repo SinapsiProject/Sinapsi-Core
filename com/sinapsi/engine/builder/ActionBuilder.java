@@ -1,18 +1,10 @@
 package com.sinapsi.engine.builder;
 
-import com.sinapsi.engine.Action;
-import com.sinapsi.engine.ComponentFactory;
-import com.sinapsi.engine.parameters.ActualParamBuilder;
-import com.sinapsi.engine.parameters.FormalParamBuilder;
+import com.sinapsi.engine.component.Action;
+import com.sinapsi.engine.component.ComponentFactory;
 import com.sinapsi.model.impl.ActionDescriptor;
 import com.sinapsi.model.impl.ComponentsAvailability;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
