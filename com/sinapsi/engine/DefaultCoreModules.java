@@ -26,6 +26,8 @@ public class DefaultCoreModules {
 
     public static final String ANTARES_CORE_MODULE_NAME = "ANTARES_CORE_MODULE";
 
+    public static final String ROLE_ANTARES_CORE = "ROLE_ANTARES_CORE";
+
     public static final String REQUIREMENT_RESTARTABLE_MACRO_ENGINE = "REQUIREMENT_RESTARTABLE_MACRO_ENGINE";
 
     public static final SinapsiModule ANTARES_CORE_MODULE = new FactoryModel().newModule(
@@ -34,6 +36,9 @@ public class DefaultCoreModules {
             ANTARES_CORE_MODULE_NAME,
             SINAPSI_TEAM_DEVELOPER_ID,
             SinapsiPlatforms.PLATFORM_ALL,
+            null,
+            null,
+            new String[]{ROLE_ANTARES_CORE},
             null,
 
             TriggerEngineStart.class,
@@ -45,7 +50,10 @@ public class DefaultCoreModules {
 
     //COMMONS MODULE - ANTARES VERSION ##############################
 
-    public static final String ANTARES_COMMONS_MODULE_NAME = "ANTARES_COMMONS_MODULE";
+    public static final String ANTARES_COMMON_COMPONENTS_MODULE_NAME = "ANTARES_COMMON_COMPONENTS_MODULE";
+
+    public static final String ROLE_ANTARES_COMMON_COMPONENTS = "ROLE_ANTARES_COMMON_COMPONENTS";
+    public static final String ROLE_ANTARES_COMMON_ADAPTERS = "ROLE_ANTARES_COMMON_ADAPTERS";
 
     public static final String REQUIREMENT_SIMPLE_DIALOGS = "REQUIREMENT_SIMPLE_DIALOGS";
     public static final String REQUIREMENT_INPUT_DIALOGS = "REQUIREMENT_INPUT_DIALOGS";
@@ -56,14 +64,17 @@ public class DefaultCoreModules {
     public static final String REQUIREMENT_INTERCEPT_SCREEN_POWER = "REQUIREMENT_INTERCEPT_SCREEN_POWER";
     public static final String REQUIREMENT_AC_CHARGER = "REQUIREMENT_AC_CHARGER";
 
-    public static final SinapsiModule ANTARES_COMMONS_MODULE = new FactoryModel().newModule(
+    public static final SinapsiModule ANTARES_COMMON_COMPONENTS_MODULE = new FactoryModel().newModule(
             SinapsiVersions.ANTARES.ordinal(),
             SinapsiVersions.ANTARES.ordinal(),
-            ANTARES_COMMONS_MODULE_NAME,
+            ANTARES_COMMON_COMPONENTS_MODULE_NAME,
             SINAPSI_TEAM_DEVELOPER_ID,
-            SinapsiPlatforms.PLATFORM_UNDEFINED,
+            SinapsiPlatforms.PLATFORM_ALL,
             null,
-            
+            new String[]{ROLE_ANTARES_COMMON_ADAPTERS},
+            new String[]{ROLE_ANTARES_COMMON_COMPONENTS},
+            null,
+
             ActionContinueConfirmDialog.class,
             ActionSendSMS.class,
             ActionSimpleNotification.class,

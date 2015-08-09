@@ -6,6 +6,7 @@ import com.sinapsi.model.impl.TriggerDescriptor;
 import com.sinapsi.model.module.SinapsiModule;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.model.module.SinapsiModuleMember;
+import com.sinapsi.model.module.SinapsiModuleName;
 
 import java.util.List;
 
@@ -55,7 +56,7 @@ public interface FactoryModelInterface {
      * @param module
      * @return
      */
-    public ActionDescriptor newActionDescriptor(int minVersion, String name, String formalParameters, SinapsiModuleDescriptor module);
+    public ActionDescriptor newActionDescriptor(int minVersion, String name, String formalParameters);
     
     /**
      * Creates a new trigger abstract representation
@@ -64,7 +65,7 @@ public interface FactoryModelInterface {
      * @param module
      * @return
      */
-    public TriggerDescriptor newTriggerDescriptor(int minVersion, String name, String formalParameters, SinapsiModuleDescriptor module);
+    public TriggerDescriptor newTriggerDescriptor(int minVersion, String name, String formalParameters);
 
     /**
      * Creates a new module descriptor
@@ -73,10 +74,12 @@ public interface FactoryModelInterface {
      * @param name the name of the module
      * @param devId the developer id
      * @param platform the platform
+     * @param neededRoles
+     * @param filledRoles
      * @return a new SinapsiModuleDescriptor
      */
-    public SinapsiModuleDescriptor newModuleDescriptor(int minVersion, int defVersion, String name, String devId, String platform);
+    public SinapsiModuleDescriptor newModuleDescriptor(int minVersion, int defVersion, String name, String devId, String platform, String[] neededRoles, String[] filledRoles, SinapsiModuleName... dependencies);
 
     @SuppressWarnings("unchecked")
-    public SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, RequirementResolver resolver, Class<? extends SinapsiModuleMember>... members);
+    public SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, RequirementResolver resolver, String[] neededRoles, String[] filledRoles, SinapsiModuleName[] dependencies, Class<? extends SinapsiModuleMember>... members);
 }

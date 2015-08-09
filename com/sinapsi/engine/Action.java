@@ -272,4 +272,11 @@ public abstract class Action implements ParameterizedActual, DistributedComponen
             return reqs;
         }
     }
+
+    @Override
+    public String getDesignedPlatform() {
+        Component annot = this.getClass().getAnnotation(Component.class);
+        if(annot == null) throw new MissingAnnotationException(this.getClass());
+        return annot.platform();
+    }
 }

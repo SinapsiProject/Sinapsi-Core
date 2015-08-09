@@ -131,12 +131,12 @@ public class ComponentFactory {
 
     private ActionDescriptor newActionDescriptor(String name){
         Action a = (Action) loader.newComponentInstance(MacroComponent.ComponentTypes.ACTION, name);
-        return fm.newActionDescriptor(a.getMinVersion(), a.getName(), a.getFormalParameters(), a.getBelongingSinapsiModule());
+        return fm.newActionDescriptor(a.getMinVersion(), a.getName(), a.getFormalParameters());
     }
 
     private TriggerDescriptor newTriggerDescriptor(String name){
         Trigger t = (Trigger) loader.newComponentInstance(MacroComponent.ComponentTypes.TRIGGER, name);
-        return fm.newTriggerDescriptor(t.getMinVersion(), t.getName(), t.getFormalParameters(), t.getBelongingSinapsiModule());
+        return fm.newTriggerDescriptor(t.getMinVersion(), t.getName(), t.getFormalParameters());
     }
 
     public Trigger newEmptyTrigger(MacroInterface macro){
@@ -169,6 +169,11 @@ public class ComponentFactory {
             @Override
             public HashMap<String, Integer> getSystemRequirementKeys() {
                 return null;
+            }
+
+            @Override
+            public String getDesignedPlatform() {
+                return SinapsiPlatforms.PLATFORM_ALL;
             }
         };
 
@@ -206,6 +211,11 @@ public class ComponentFactory {
             @Override
             public HashMap<String, Integer> getSystemRequirementKeys() {
                 return null;
+            }
+
+            @Override
+            public String getDesignedPlatform() {
+                return SinapsiPlatforms.PLATFORM_ALL;
             }
         };
 
@@ -250,6 +260,11 @@ public class ComponentFactory {
             @Override
             public HashMap<String, Integer> getSystemRequirementKeys() {
                 return null;
+            }
+
+            @Override
+            public String getDesignedPlatform() {
+                return SinapsiPlatforms.PLATFORM_ALL;
             }
         };
 

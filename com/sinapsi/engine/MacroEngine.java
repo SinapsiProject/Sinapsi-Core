@@ -66,30 +66,35 @@ public class MacroEngine {
         log = sinapsiLog;
 
         EngineModuleManager moduleManager = new EngineModuleManager(this, modules);
+        if(!moduleManager.isErrorStatus()){
+            VariableManager globalVars = new VariableManager();
 
-        VariableManager globalVars = new VariableManager();
-
-        activationManager.init(new ExecutionInterface(
-                new SystemFacadeGenerator(
-                        moduleManager.getAllComponentSystemAdapterClasses(),
-                        objectProvider,
-                        currentDevice.getPlatformType(),
-                        defaultResolver,
-                        moduleManager.getAllRequirementResolvers()
-                ).generateSystemFacade(),
-                device,
-                webExecutionInterface,
-                globalVars,
-                log
-        ));
+            activationManager.init(new ExecutionInterface(
+                    new SystemFacadeGenerator(
+                            moduleManager.getAllComponentSystemAdapterClasses(),
+                            objectProvider,
+                            currentDevice.getPlatformType(),
+                            defaultResolver,
+                            moduleManager.getAllRequirementResolvers()
+                    ).generateSystemFacade(),
+                    device,
+                    webExecutionInterface,
+                    globalVars,
+                    log
+            ));
 
 
 
-        Class<? extends MacroComponent>[] componentClasses = moduleManager.getAllComponentClasses();
+            Class<? extends MacroComponent>[] componentClasses = moduleManager.getAllComponentClasses();
 
-        factory = new ComponentFactory(device, log, componentClasses);
+            factory = new ComponentFactory(device, log, componentClasses);
 
-        sinapsiLog.log("MACROENGINE", "Engine initialized.");
+            sinapsiLog.log("MACROENGINE", "Engine initialized.");
+        }else{
+
+        }
+
+
     }
 
 
@@ -211,6 +216,14 @@ public class MacroEngine {
     
     public DeviceInterface getDevice() {
        return this.device;
+    }
+
+    public String getPlatform() {
+        return device.getPlatformType();
+    }
+
+    public SinapsiVersions getCurrentVersion(){
+        return SinapsiVersions.ANTARES;
     }
 
     public class MissingMacroException extends Exception {

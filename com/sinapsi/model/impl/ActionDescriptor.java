@@ -1,5 +1,6 @@
 package com.sinapsi.model.impl;
 
+import com.sinapsi.engine.SinapsiPlatforms;
 import com.sinapsi.model.MacroComponent;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 
@@ -13,17 +14,15 @@ public class ActionDescriptor extends CommunicationInfo implements MacroComponen
     private int minVersion;
 	private String name;
 	private String formalParams;
-    private SinapsiModuleDescriptor module;
 
 	/**
 	 * Default ctor
 	 */
-	public ActionDescriptor(int minVersion, String name, String formalParams, SinapsiModuleDescriptor module) {
+	public ActionDescriptor(int minVersion, String name, String formalParams) {
 		super();
 		this.minVersion = minVersion;
 		this.name = name;
         this.formalParams = formalParams;
-		this.module = module;
 	}
 
 	@Override
@@ -41,7 +40,12 @@ public class ActionDescriptor extends CommunicationInfo implements MacroComponen
         return null;
     }
 
-    @Override
+	@Override
+	public String getDesignedPlatform() {
+		return SinapsiPlatforms.PLATFORM_ALL;
+	}
+
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -53,6 +57,6 @@ public class ActionDescriptor extends CommunicationInfo implements MacroComponen
 
 	@Override
 	public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-		return module;
+		return null;
 	}
 }

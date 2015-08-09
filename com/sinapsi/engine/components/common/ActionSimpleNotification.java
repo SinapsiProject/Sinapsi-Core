@@ -52,6 +52,6 @@ public class ActionSimpleNotification extends Action {
 
     @Override
     public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMONS_MODULE;
+        return DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE;
     }
 }

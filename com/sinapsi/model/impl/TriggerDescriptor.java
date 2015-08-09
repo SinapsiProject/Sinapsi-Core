@@ -1,5 +1,6 @@
 package com.sinapsi.model.impl;
 
+import com.sinapsi.engine.SinapsiPlatforms;
 import com.sinapsi.model.MacroComponent;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 
@@ -13,17 +14,15 @@ public class TriggerDescriptor extends CommunicationInfo implements MacroCompone
 	private int minVersion;
 	private String name;
 	private String formalParameters;
-	private SinapsiModuleDescriptor module;
-	
+
 	/**
 	 * Default ctor
 	 */
-	public TriggerDescriptor(int minVer, String n, String formalParameters, SinapsiModuleDescriptor module) {
+	public TriggerDescriptor(int minVer, String n, String formalParameters) {
 		super();
 		this.minVersion = minVer;
 		this.name = n;
         this.formalParameters = formalParameters;
-        this.module = module;
 	}
 
 	@Override
@@ -54,6 +53,11 @@ public class TriggerDescriptor extends CommunicationInfo implements MacroCompone
 
 	@Override
 	public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-		return module;
+		return null;
 	}
+
+    @Override
+    public String getDesignedPlatform() {
+        return SinapsiPlatforms.PLATFORM_ALL;
+    }
 }

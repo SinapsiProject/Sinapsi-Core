@@ -3,6 +3,7 @@ package com.sinapsi.model.impl;
 import com.sinapsi.engine.RequirementResolver;
 import com.sinapsi.model.module.SinapsiModule;
 import com.sinapsi.model.module.SinapsiModuleMember;
+import com.sinapsi.model.module.SinapsiModuleName;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,8 +19,17 @@ public class SinapsiModuleImpl extends SinapsiModuleDescriptorImpl implements Si
     private final Class<? extends SinapsiModuleMember>[] members;
 
     @SafeVarargs
-    SinapsiModuleImpl(int minVersion, int defVersion, String name, String devId, String platform, RequirementResolver resolver, Class<? extends SinapsiModuleMember>... members) {
-        super(minVersion, defVersion, name, devId, platform);
+    SinapsiModuleImpl(int minVersion,
+                      int defVersion,
+                      String name,
+                      String devId,
+                      String platform,
+                      RequirementResolver resolver,
+                      String[] neededRoles,
+                      String[] filledRoles,
+                      SinapsiModuleName[] dependencies,
+                      Class<? extends SinapsiModuleMember>... members) {
+        super(minVersion, defVersion, name, devId, platform, neededRoles, filledRoles, dependencies);
         this.resolver = resolver;
         this.members = members;
     }

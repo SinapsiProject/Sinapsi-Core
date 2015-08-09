@@ -52,6 +52,8 @@ public interface MacroComponent extends ParameterizedFormal, SinapsiModuleMember
      */
     public HashMap<String,Integer> getSystemRequirementKeys();
 
+    public String getDesignedPlatform();
+
     public enum ComponentTypes{
         TRIGGER,
         ACTION

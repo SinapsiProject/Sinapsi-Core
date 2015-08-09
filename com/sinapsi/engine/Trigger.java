@@ -362,4 +362,11 @@ public abstract class Trigger implements ParameterizedActual, DistributedCompone
             return reqs;
         }
     }
+
+    @Override
+    public String getDesignedPlatform() {
+        Component annot = this.getClass().getAnnotation(Component.class);
+        if(annot == null) throw new MissingAnnotationException(this.getClass());
+        return annot.platform();
+    }
 }
