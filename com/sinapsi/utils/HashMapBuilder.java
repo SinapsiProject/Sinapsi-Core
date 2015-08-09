@@ -16,7 +16,7 @@ public class HashMapBuilder <K, V>{
      * @return the invocation object itself, to allow method
      *         chaining.
      */
-    public HashMapBuilder put(K key, V value){
+    public HashMapBuilder<K, V> put(K key, V value){
         map.put(key,value);
         return this;
     }

@@ -232,6 +232,7 @@ public class MacroEngine {
         return SinapsiVersions.ANTARES;
     }
 
-    public class MissingMacroException extends Exception {
+    @SuppressWarnings("serial")
+	public class MissingMacroException extends Exception {
     }
 }

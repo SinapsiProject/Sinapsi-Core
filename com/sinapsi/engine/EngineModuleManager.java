@@ -87,12 +87,14 @@ public class EngineModuleManager {
     }
 
 
-    public Class<? extends MacroComponent>[] getAllComponentClasses() {
+    @SuppressWarnings("unchecked")
+	public Class<? extends MacroComponent>[] getAllComponentClasses() {
         //noinspection unchecked
         return components.toArray((Class<? extends MacroComponent>[]) new Class<?>[components.size()]);
     }
 
-    public Class<? extends ComponentSystemAdapter>[] getAllComponentSystemAdapterClasses() {
+    @SuppressWarnings("unchecked")
+	public Class<? extends ComponentSystemAdapter>[] getAllComponentSystemAdapterClasses() {
         //noinspection unchecked
         return adapters.toArray((Class<? extends ComponentSystemAdapter>[]) new Class<?>[adapters.size()]);
     }

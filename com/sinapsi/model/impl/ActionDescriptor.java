@@ -2,8 +2,6 @@ package com.sinapsi.model.impl;
 
 import com.sinapsi.engine.SinapsiPlatforms;
 import com.sinapsi.model.MacroComponent;
-import com.sinapsi.model.module.SinapsiModuleDescriptor;
-
 import java.util.HashMap;
 
 /**

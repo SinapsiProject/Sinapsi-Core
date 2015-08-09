@@ -77,6 +77,6 @@ public interface FactoryModelInterface {
      */
     public SinapsiModuleDescriptor newModuleDescriptor(int minVersion, int defVersion, String name, String devId, String platform, String[] neededRoles, String[] filledRoles, SinapsiModuleName... dependencies);
 
-    @SuppressWarnings("unchecked")
+
     public SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, RequirementResolver resolver, String[] neededRoles, String[] filledRoles, SinapsiModuleName[] dependencies, Class<?>... members);
 }
