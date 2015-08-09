@@ -7,6 +7,7 @@ package com.sinapsi.engine.system;
  */
 public interface PlatformDependantObjectProvider {
     public enum ObjectKey {
+        LOGGED_USER,
         ANDROID_SERVICE_CONTEXT,
         ANDROID_APPLICATION_CONTEXT,
         LINUX_ROOT_PERMISSIONS, //valid also for eventual android modules for rooted devices

@@ -18,7 +18,7 @@ public class SinapsiModuleDescriptorImpl extends CommunicationInfo implements Si
     private String[] filledRoles;
     private SinapsiModuleName[] dependencies;
 
-    SinapsiModuleDescriptorImpl(int minVersion, int defVersion, String name, String devId, String platform, String[] neededRoles, String[] filledRoles, SinapsiModuleName... dependencies) {
+    public SinapsiModuleDescriptorImpl(int minVersion, int defVersion, String name, String devId, String platform, String[] neededRoles, String[] filledRoles, SinapsiModuleName... dependencies) {
         this.minVersion = minVersion;
         this.defVersion = defVersion;
         this.name = name;

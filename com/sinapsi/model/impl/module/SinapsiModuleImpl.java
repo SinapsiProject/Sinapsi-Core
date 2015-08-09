@@ -17,7 +17,7 @@ public class SinapsiModuleImpl extends SinapsiModuleDescriptorImpl implements Si
     private final RequirementResolver resolver;
     private final Class<?>[] members;
 
-    SinapsiModuleImpl(int minVersion,
+    public SinapsiModuleImpl(int minVersion,
                       int defVersion,
                       String name,
                       String devId,

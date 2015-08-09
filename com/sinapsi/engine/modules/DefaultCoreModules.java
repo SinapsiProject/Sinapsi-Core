@@ -2,6 +2,10 @@ package com.sinapsi.engine.modules;
 
 import com.sinapsi.engine.SinapsiPlatforms;
 import com.sinapsi.engine.SinapsiVersions;
+import com.sinapsi.engine.modules.common.ActionContinueConfirmDialog;
+import com.sinapsi.engine.modules.common.ActionSendSMS;
+import com.sinapsi.engine.modules.common.ActionSimpleNotification;
+import com.sinapsi.engine.modules.common.ActionStringInputDialog;
 import com.sinapsi.engine.modules.common.ActionWifiState;
 import com.sinapsi.engine.modules.common.TriggerACPower;
 import com.sinapsi.engine.modules.common.TriggerSMS;
