@@ -7,5 +7,7 @@ public class SinapsiPlatforms {
     public static final String PLATFORM_ALL = "All";
     public static final String PLATFORM_ANDROID = "Android";
     public static final String PLATFORM_LINUX_DESKTOP = "Linux_Desktop";
+    public static final String PLATFORM_WEB_SERVICE = "Web";
     //TODO: insert other platforms
+	
 }

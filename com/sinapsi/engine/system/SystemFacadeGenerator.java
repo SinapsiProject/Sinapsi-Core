@@ -38,7 +38,7 @@ public class SystemFacadeGenerator {
     public SystemFacade generateSystemFacade() {
         SystemFacade sf = new SystemFacade();
 
-        defaultResolver.resolveRequirements(sf);
+        if(defaultResolver!=null)defaultResolver.resolveRequirements(sf);
 
         for(RequirementResolver rr: modulesResolvers){
             rr.setPlatformDependantObjects(getPlatformDependantObjects(rr.getPlatformDependantObjectsKeys()));
