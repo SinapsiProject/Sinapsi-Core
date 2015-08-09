@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * TODO: doku
+ * Helper class instantiated by MacroEngine to automatically generate the system facade.
  */
 public class SystemFacadeGenerator {
 

@@ -1,7 +1,9 @@
 package com.sinapsi.engine;
 
 /**
- * //TODO: doku
+ * Interface to be implemented in order to provide to requirement resolvers and adapters
+ * platform dependant objects. Every platform should try to provide the most possible objects
+ * which keys are in enum definition @{code ObjectKey}.
  */
 public interface PlatformDependantObjectProvider {
     public enum ObjectKey {

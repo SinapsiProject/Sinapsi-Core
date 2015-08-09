@@ -69,7 +69,8 @@ public class SyncManager {
     /**
      * Adds a new macro and the related actions to the current db
      * @param macro the macro to be inserted
-     * @throws InconsistentMacroChangeException todo doku
+     * @throws InconsistentMacroChangeException if this change attempt on the {@code macro} is inconsistent
+     *
      */
     public void addMacro(MacroInterface macro) throws InconsistentMacroChangeException {
         diffDb.macroAdded(macro);
@@ -80,7 +81,7 @@ public class SyncManager {
      * Updates a macro if its id is equal to another macro's id
      * already in the db.
      * @param macro the macro to be updated
-     * @throws InconsistentMacroChangeException todo doku
+     * @throws InconsistentMacroChangeException if this change attempt on the {@code macro} is inconsistent
      */
     public void updateMacro(MacroInterface macro) throws InconsistentMacroChangeException {
         diffDb.macroUpdated(macro);
@@ -101,7 +102,7 @@ public class SyncManager {
      * Removes the macro with the specified id from the current db.
      *
      * @param id the macro id
-     * @throws InconsistentMacroChangeException todo doku
+     * @throws InconsistentMacroChangeException if this change attempt on the {@code macro} is inconsistent
      */
     public void removeMacro(int id) throws InconsistentMacroChangeException {
         currentDb.removeMacro(id);

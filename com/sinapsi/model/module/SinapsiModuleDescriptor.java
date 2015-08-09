@@ -1,7 +1,7 @@
 package com.sinapsi.model.module;
 
 /**
- * TODO: doku
+ * This interface contains methods to get metadata of a module.
  */
 public interface SinapsiModuleDescriptor {
     public int getMinimumEngineVersion();

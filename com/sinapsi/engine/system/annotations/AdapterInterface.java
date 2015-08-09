@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * //TODO: doku
+ * Used to annotate interfaces which extend ComponentSystemAdapter
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

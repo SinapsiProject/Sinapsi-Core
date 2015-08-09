@@ -3,7 +3,8 @@ package com.sinapsi.engine;
 import com.sinapsi.engine.system.SystemFacade;
 
 /**
- * TODO: doku
+ * Interface to be implemented each time a new module is defined, in order to specify
+ * how requirements are resolved for that specific module.
  */
 public interface RequirementResolver{
     public PlatformDependantObjectProvider.ObjectKey[] getPlatformDependantObjectsKeys();

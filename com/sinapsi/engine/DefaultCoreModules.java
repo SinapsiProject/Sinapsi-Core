@@ -20,7 +20,7 @@ import com.sinapsi.model.module.SinapsiModule;
 public class DefaultCoreModules {
 
     public static final String SINAPSI_TEAM_DEVELOPER_ID = "SINAPSI";
-    
+
 
     //CORE MODULE - ANTARES VERSION #################################
 
