@@ -8,7 +8,7 @@ import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
-import com.sinapsi.model.module.SinapsiModuleDescriptor;
+import com.sinapsi.model.module.ModuleMember;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,6 +21,7 @@ import org.json.JSONObject;
  * it relies on other facades/adapters like SystemFacade and
  * SMSAdapter.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE_NAME)
 @Component(ActionSendSMS.ACTION_SEND_SMS)
 @Requires({
         @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_SMS_SEND)
@@ -50,8 +51,4 @@ public class ActionSendSMS extends Action {
                 .create();
     }
 
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE;
-    }
 }

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface SinapsiModule extends SinapsiModuleDescriptor {
     //TODO: find a way to declare requirements between modules (i.e. module A requires module B to work)
-    public List<Class<? extends SinapsiModuleMember>> getMembers();
+    public List<Class<?>> getMembers();
     public RequirementResolver getRequirementResolver();
 }

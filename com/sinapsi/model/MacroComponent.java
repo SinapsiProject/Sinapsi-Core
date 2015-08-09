@@ -1,7 +1,5 @@
 package com.sinapsi.model;
 
-import com.sinapsi.model.module.SinapsiModuleMember;
-
 import java.util.HashMap;
 
 /**
@@ -10,7 +8,7 @@ import java.util.HashMap;
  * should implement this interface.
  *
  */
-public interface MacroComponent extends ParameterizedFormal, SinapsiModuleMember {
+public interface MacroComponent extends ParameterizedFormal {
 
     //TODO: could this contain executionDevice field painlessly?
 

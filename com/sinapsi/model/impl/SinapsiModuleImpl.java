@@ -2,7 +2,6 @@ package com.sinapsi.model.impl;
 
 import com.sinapsi.engine.RequirementResolver;
 import com.sinapsi.model.module.SinapsiModule;
-import com.sinapsi.model.module.SinapsiModuleMember;
 import com.sinapsi.model.module.SinapsiModuleName;
 
 import java.util.ArrayList;
@@ -16,9 +15,8 @@ public class SinapsiModuleImpl extends SinapsiModuleDescriptorImpl implements Si
 
 
     private final RequirementResolver resolver;
-    private final Class<? extends SinapsiModuleMember>[] members;
+    private final Class<?>[] members;
 
-    @SafeVarargs
     SinapsiModuleImpl(int minVersion,
                       int defVersion,
                       String name,
@@ -28,14 +26,14 @@ public class SinapsiModuleImpl extends SinapsiModuleDescriptorImpl implements Si
                       String[] neededRoles,
                       String[] filledRoles,
                       SinapsiModuleName[] dependencies,
-                      Class<? extends SinapsiModuleMember>... members) {
+                      Class<?>... members) {
         super(minVersion, defVersion, name, devId, platform, neededRoles, filledRoles, dependencies);
         this.resolver = resolver;
         this.members = members;
     }
 
     @Override
-    public List<Class<? extends SinapsiModuleMember>> getMembers() {
+    public List<Class<?>> getMembers() {
         return new ArrayList<>(Arrays.asList(members));
     }
 

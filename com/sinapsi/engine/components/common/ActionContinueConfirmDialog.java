@@ -8,7 +8,7 @@ import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
-import com.sinapsi.model.module.SinapsiModuleDescriptor;
+import com.sinapsi.model.module.ModuleMember;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +27,7 @@ import org.json.JSONObject;
  * Notice that this action is completely platform-independent:
  * it relies on ExecutionInterface and DialogAdapter.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE_NAME)
 @Component(ActionContinueConfirmDialog.ACTION_CONTINUE_CONFIRM_DIALOG)
 @Requires({
         @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_SIMPLE_DIALOGS)
@@ -65,8 +66,4 @@ public class ActionContinueConfirmDialog extends Action {
                 .create();
     }
 
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE;
-    }
 }

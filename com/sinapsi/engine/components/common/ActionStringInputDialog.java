@@ -9,6 +9,7 @@ import com.sinapsi.engine.system.DialogAdapter;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
+import com.sinapsi.model.module.ModuleMember;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.JSONUtils;
 
@@ -20,6 +21,7 @@ import org.json.JSONObject;
  * dialog to allow the user to input a string on a text field,
  * which will be saved in a variable with the chosen name.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE_NAME)
 @Component(ActionStringInputDialog.ACTION_STRING_INPUT_DIALOG)
 @Requires({
         @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_INPUT_DIALOGS)
@@ -74,8 +76,4 @@ public class ActionStringInputDialog extends Action{
                 .create();
     }
 
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE;
-    }
 }

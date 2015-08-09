@@ -8,6 +8,7 @@ import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
+import com.sinapsi.model.module.ModuleMember;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 
 import org.json.JSONException;
@@ -18,6 +19,7 @@ import org.json.JSONObject;
  * the device's main screen turns on or off. This
  * trigger can be parametrized by the status of the screen power.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE_NAME)
 @Component(TriggerScreenPower.TRIGGER_SCREEN_POWER)
 @Requires({
         @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_INTERCEPT_SCREEN_POWER)
@@ -38,8 +40,4 @@ public class TriggerScreenPower extends Trigger {
         return e.getJSONObject();
     }
 
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE;
-    }
 }

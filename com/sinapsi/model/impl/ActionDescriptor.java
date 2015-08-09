@@ -55,8 +55,4 @@ public class ActionDescriptor extends CommunicationInfo implements MacroComponen
 		return formalParams;
 	}
 
-	@Override
-	public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-		return null;
-	}
 }

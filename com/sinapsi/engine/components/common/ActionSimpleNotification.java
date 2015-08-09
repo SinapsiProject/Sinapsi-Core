@@ -8,7 +8,7 @@ import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
-import com.sinapsi.model.module.SinapsiModuleDescriptor;
+import com.sinapsi.model.module.ModuleMember;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +22,7 @@ import org.json.JSONObject;
  * it relies on other facades/adapters like SystemFacade and
  * NotificationAdapter.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE_NAME)
 @Component(ActionSimpleNotification.ACTION_SIMPLE_NOTIFICATION)
 @Requires({
         @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_SIMPLE_NOTIFICATIONS)
@@ -50,8 +51,4 @@ public class ActionSimpleNotification extends Action {
                 .create();
     }
 
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE;
-    }
 }

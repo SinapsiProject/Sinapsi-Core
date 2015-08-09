@@ -10,6 +10,7 @@ import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.MacroComponent;
+import com.sinapsi.model.module.ModuleMember;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.JSONUtils;
 
@@ -26,6 +27,7 @@ import java.util.HashMap;
  * Notice that this action is completely platform-independent:
  * it relies on other facades/adapters in ExecutionInterface.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_CORE_MODULE_NAME)
 @Component(ActionSetVariable.ACTION_SET_VARIABLE)
 @Requires({})
 public class ActionSetVariable extends Action {
@@ -70,8 +72,4 @@ public class ActionSetVariable extends Action {
                 .create();
     }
 
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_CORE_MODULE;
-    }
 }

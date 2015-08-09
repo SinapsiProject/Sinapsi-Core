@@ -10,7 +10,6 @@ import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.UserInterface;
 import com.sinapsi.model.module.SinapsiModule;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
-import com.sinapsi.model.module.SinapsiModuleMember;
 import com.sinapsi.model.module.SinapsiModuleName;
 
 /**
@@ -56,7 +55,7 @@ public class FactoryModel implements FactoryModelInterface {
 
     @SafeVarargs
     @Override
-    public final SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, RequirementResolver resolver, String[] neededRoles, String[] filledRoles, SinapsiModuleName[] dependencies, Class<? extends SinapsiModuleMember>... members) {
+    public final SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, RequirementResolver resolver, String[] neededRoles, String[] filledRoles, SinapsiModuleName[] dependencies, Class<?>... members) {
         return new SinapsiModuleImpl(minVersion, defVersion, name, devId, platform, resolver, neededRoles, filledRoles, dependencies, members);
     }
 

@@ -11,6 +11,7 @@ import com.sinapsi.engine.parameters.SwitchStatusChoices;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
+import com.sinapsi.model.module.ModuleMember;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 import com.sinapsi.utils.JSONUtils;
 
@@ -25,6 +26,7 @@ import org.json.JSONObject;
  * Notice that this trigger is completely platform-independent:
  * it relies on other facades/adapters like SystemFacade and WifiAdapter.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE_NAME)
 @Component(TriggerWifi.TRIGGER_WIFI)
 @Requires({
         @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_WIFI)
@@ -55,9 +57,5 @@ public class TriggerWifi extends Trigger {
 
     }
 
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE;
-    }
 
 }

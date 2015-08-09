@@ -5,10 +5,7 @@ import com.sinapsi.model.impl.ActionDescriptor;
 import com.sinapsi.model.impl.TriggerDescriptor;
 import com.sinapsi.model.module.SinapsiModule;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
-import com.sinapsi.model.module.SinapsiModuleMember;
 import com.sinapsi.model.module.SinapsiModuleName;
-
-import java.util.List;
 
 /**
  * The default Model Factory Interface
@@ -81,5 +78,5 @@ public interface FactoryModelInterface {
     public SinapsiModuleDescriptor newModuleDescriptor(int minVersion, int defVersion, String name, String devId, String platform, String[] neededRoles, String[] filledRoles, SinapsiModuleName... dependencies);
 
     @SuppressWarnings("unchecked")
-    public SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, RequirementResolver resolver, String[] neededRoles, String[] filledRoles, SinapsiModuleName[] dependencies, Class<? extends SinapsiModuleMember>... members);
+    public SinapsiModule newModule(int minVersion, int defVersion, String name, String devId, String platform, RequirementResolver resolver, String[] neededRoles, String[] filledRoles, SinapsiModuleName[] dependencies, Class<?>... members);
 }

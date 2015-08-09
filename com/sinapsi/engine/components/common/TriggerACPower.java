@@ -8,7 +8,7 @@ import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
-import com.sinapsi.model.module.SinapsiModuleDescriptor;
+import com.sinapsi.model.module.ModuleMember;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +18,7 @@ import org.json.JSONObject;
  * TriggerACPower class. This trigger will activate a macro when
  * the AC charger is connected or disconnected.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE_NAME)
 @Component(TriggerACPower.TRIGGER_AC_POWER)
 @Requires({
         @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_AC_CHARGER)
@@ -36,11 +37,5 @@ public class TriggerACPower extends Trigger {
     @Override
     protected JSONObject extractParameterValues(Event e, ExecutionInterface di) throws JSONException {
         return e.getJSONObject();
-    }
-
-
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE;
     }
 }

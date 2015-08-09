@@ -9,6 +9,7 @@ import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requires;
 import com.sinapsi.model.MacroComponent;
+import com.sinapsi.model.module.ModuleMember;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 
 import org.json.JSONException;
@@ -24,6 +25,7 @@ import java.util.HashMap;
  * Notice that this action is completely platform-independent:
  * it relies on other facades/adapters in ExecutionInterface.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_CORE_MODULE_NAME)
 @Component(ActionLog.ACTION_LOG)
 @Requires({})
 public class ActionLog extends Action {
@@ -47,8 +49,4 @@ public class ActionLog extends Action {
                 .create();
     }
 
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_CORE_MODULE;
-    }
 }

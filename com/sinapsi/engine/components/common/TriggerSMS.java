@@ -8,6 +8,7 @@ import com.sinapsi.engine.parameters.FormalParamBuilder;
 import com.sinapsi.engine.system.annotations.Component;
 import com.sinapsi.engine.system.annotations.Requirement;
 import com.sinapsi.engine.system.annotations.Requires;
+import com.sinapsi.model.module.ModuleMember;
 import com.sinapsi.model.module.SinapsiModuleDescriptor;
 
 import org.json.JSONException;
@@ -19,6 +20,7 @@ import org.json.JSONObject;
  * be parametrized by the sender or/and by the content of the
  * message.
  */
+@ModuleMember(DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE_NAME)
 @Component(TriggerSMS.TRIGGER_SMS)
 @Requires({
         @Requirement(value = 1, name = DefaultCoreModules.REQUIREMENT_SMS_READ)
@@ -40,8 +42,4 @@ public class TriggerSMS extends Trigger{
         return e.getJSONObject();
     }
 
-    @Override
-    public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-        return DefaultCoreModules.ANTARES_COMMON_COMPONENTS_MODULE;
-    }
 }

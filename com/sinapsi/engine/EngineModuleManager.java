@@ -2,7 +2,6 @@ package com.sinapsi.engine;
 
 import com.sinapsi.model.MacroComponent;
 import com.sinapsi.model.module.SinapsiModule;
-import com.sinapsi.model.module.SinapsiModuleMember;
 import com.sinapsi.model.module.SinapsiModuleName;
 
 import java.util.ArrayList;
@@ -76,7 +75,7 @@ public class EngineModuleManager {
         for (SinapsiModule m : modules.values()) {
             if (m.getRequirementResolver() != null)
                 resolvers.add(m.getRequirementResolver());
-            for (Class<? extends SinapsiModuleMember> mm : m.getMembers()) {
+            for (Class<?> mm : m.getMembers()) {
                 if (doesClassImplementMacroComponent(mm))
                     components.add((Class<? extends MacroComponent>) mm);
                 if (doesClassImplementComponentSystemAdapter(mm))

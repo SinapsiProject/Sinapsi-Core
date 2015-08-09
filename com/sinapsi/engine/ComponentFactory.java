@@ -141,10 +141,6 @@ public class ComponentFactory {
 
     public Trigger newEmptyTrigger(MacroInterface macro){
         Trigger t = new Trigger() {
-            @Override
-            public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-                return null;
-            }
 
             @Override
             public JSONObject getFormalParametersJSON() throws JSONException {
@@ -183,10 +179,6 @@ public class ComponentFactory {
 
     private Trigger newRemoteTrigger(final String componentName, String parameters, MacroInterface macro, int executionDevice){
         Trigger t = new Trigger() {
-            @Override
-            public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-                return null;
-            }
 
             @Override
             public JSONObject getFormalParametersJSON() throws JSONException {
@@ -232,10 +224,6 @@ public class ComponentFactory {
 
     private Action newRemoteAction(final String componentName, String parameters, int executionDevice){
         Action a = new Action() {
-            @Override
-            public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-                return null;
-            }
 
             @Override
             protected void onActivate(ExecutionInterface ei) throws JSONException {

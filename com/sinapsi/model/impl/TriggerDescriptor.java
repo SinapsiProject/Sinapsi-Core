@@ -51,10 +51,6 @@ public class TriggerDescriptor extends CommunicationInfo implements MacroCompone
         return formalParameters;
     }
 
-	@Override
-	public SinapsiModuleDescriptor getBelongingSinapsiModule() {
-		return null;
-	}
 
     @Override
     public String getDesignedPlatform() {
