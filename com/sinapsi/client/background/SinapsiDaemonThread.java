@@ -82,6 +82,7 @@ public class SinapsiDaemonThread implements
     private SinapsiModule[] modules;
     private DaemonCallbacks daemonCallbacks;
 
+    //TODO: devices table
 
     public SinapsiDaemonThread(
             UserSettingsFacade userSettings,
@@ -314,8 +315,9 @@ public class SinapsiDaemonThread implements
 
     @Override
     public boolean isOnline() {
-        onlineMode = onlineStatusProvider.isOnline();
-        notifyWebServiceConnectionListeners(onlineMode);
+        boolean tmpVal = onlineStatusProvider.isOnline();
+        if(onlineMode!=tmpVal)notifyWebServiceConnectionListeners(onlineMode);
+        onlineMode = tmpVal;
         return onlineMode;
     }
 
@@ -357,7 +359,7 @@ public class SinapsiDaemonThread implements
 
     @Override
     public void onWebSocketMessage(String message) {
-        daemonCallbacks.onWebSocketMessage();
+        daemonCallbacks.onWebSocketMessage(message);
         Gson gson = new Gson();
         WebSocketMessage wsMsg = gson.fromJson(message, WebSocketMessage.class);
         switch (wsMsg.getMsgType()) {
@@ -518,7 +520,7 @@ public class SinapsiDaemonThread implements
         public void onWebSocketError(Exception ex);
         public void onWebSocketClose(int code, String reason, boolean remote);
         public void onWebSocketOpen();
-        public void onWebSocketMessage();
+        public void onWebSocketMessage(String message);
         public void onWebSocketUpdatedNotificationReceived();
         public void onWebSocketNewConnectionNotificationReceived();
         public void onWebSocketConnectionLostNotificationReceived();
