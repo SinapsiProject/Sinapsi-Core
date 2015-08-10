@@ -38,9 +38,9 @@ public class SystemFacadeGenerator {
     public SystemFacade generateSystemFacade() {
         SystemFacade sf = new SystemFacade();
 
-        if(defaultResolver!=null)defaultResolver.resolveRequirements(sf);
+        if (defaultResolver != null) defaultResolver.resolveRequirements(sf);
 
-        for(RequirementResolver rr: modulesResolvers){
+        for (RequirementResolver rr : modulesResolvers) {
             rr.setPlatformDependantObjects(getPlatformDependantObjects(rr.getPlatformDependantObjectsKeys()));
             rr.resolveRequirements(sf);
         }
@@ -49,26 +49,26 @@ public class SystemFacadeGenerator {
             AdapterImplementation annot = c.getAnnotation(AdapterImplementation.class);
             if (annot != null) {
                 InitializationNeededObjects initAnnot = c.getAnnotation(InitializationNeededObjects.class);
-                if (initAnnot != null) {
-                    //noinspection TryWithIdenticalCatches
-                    try {
-                        ComponentSystemAdapter csa = c.newInstance();
-                        csa.init(getPlatformDependantObjects(initAnnot.value()));
-                        if(annot.platform().equals(currentPlatform) || annot.platform().equals(SinapsiPlatforms.PLATFORM_ALL))
-                            sf.addSystemService(annot.value(),csa);
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
+
+                //noinspection TryWithIdenticalCatches
+                try {
+                    ComponentSystemAdapter csa = c.newInstance();
+                    if (initAnnot != null && initAnnot.value()!=null) csa.init(getPlatformDependantObjects(initAnnot.value()));
+                    if (annot.platform().equals(currentPlatform) || annot.platform().equals(SinapsiPlatforms.PLATFORM_ALL))
+                        sf.addSystemService(annot.value(), csa);
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
                 }
+
             }
         }
         return sf;
     }
 
     private Object[] getPlatformDependantObjects(PlatformDependantObjectProvider.ObjectKey[] keys) {
-        if(keys == null) return null;
+        if (keys == null) return null;
         Object[] result = new Object[keys.length];
         for (int i = 0; i < keys.length; ++i) {
             PlatformDependantObjectProvider.ObjectKey key = keys[i];
