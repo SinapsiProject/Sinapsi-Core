@@ -58,15 +58,14 @@ public class SinapsiDaemonThread implements
     boolean running = true;
     private RetrofitWebServiceFacade web;
     private SafeSyncManager safeSyncManager;
-    private UserSettingsFacade settings;
-
     private MacroEngine engine;
+
     private SinapsiLog sinapsiLog;
     private DeviceInterface device;
-
     private Map<String, WebServiceConnectionListener> connectionListeners = new HashMap<>();
 
     private boolean started = false;
+
     private boolean onlineMode = false;
     private static final UserInterface logoutUser = fm.newUser(-1, "Not logged in yet.", "", false, "user");
     private UserInterface loggedUser = logoutUser;
@@ -115,7 +114,7 @@ public class SinapsiDaemonThread implements
 
     @Override
     public void run() {
-        initialize();
+        initializeDaemon();
         while(running) {
             //TODO: event queue handler?
             if (Thread.interrupted()) {
@@ -124,19 +123,30 @@ public class SinapsiDaemonThread implements
         }
     }
 
-    public void initialize() {
-        //TODO: REDHandler on Android
+    public void initializeDaemon() {
+        //TODO: load settings
 
         //web service initialization ----
-        web = new RetrofitWebServiceFacade(
-                retrofitLog,
-                this,
-                this,
-                this,
-                this,
-                encodingMethod,
-                decodingMethod
-        );
+        if(encodingMethod == null || decodingMethod == null){
+            web = new RetrofitWebServiceFacade(
+                    retrofitLog,
+                    this,
+                    this,
+                    this,
+                    this
+            );
+        }else {
+            web = new RetrofitWebServiceFacade(
+                    retrofitLog,
+                    this,
+                    this,
+                    this,
+                    this,
+                    encodingMethod,
+                    decodingMethod
+            );
+        }
+
 
         if(AppConsts.DEBUG_BYPASS_LOGIN) mockLogin();
     }
@@ -419,8 +429,32 @@ public class SinapsiDaemonThread implements
         return started;
     }
 
-    public boolean isOnlineMode() {
-        return onlineMode;
+    public RetrofitWebServiceFacade getWeb() {
+        return web;
+    }
+
+    public MacroEngine getEngine() {
+        return engine;
+    }
+
+    public SinapsiLog getSinapsiLog() {
+        return sinapsiLog;
+    }
+
+    public DeviceInterface getDevice() {
+        return device;
+    }
+
+    public UserInterface getLoggedUser() {
+        return loggedUser;
+    }
+
+    public SinapsiModule[] getModules() {
+        return modules;
+    }
+
+    public UserSettingsFacade getUserSettings() {
+        return userSettings;
     }
 
     public WSClient getWSClient() {
@@ -431,7 +465,7 @@ public class SinapsiDaemonThread implements
         this.device = device;
     }
 
-    private interface DBManagerProvider {
+    public interface DBManagerProvider {
         public LocalDBManager openLocalDBManager(String fileName, ComponentFactory componentFactory);
         public DiffDBManager openDiffDBManager(String fileName);
     }
@@ -471,7 +505,7 @@ public class SinapsiDaemonThread implements
         }
     }
 
-    private interface DaemonCallbacks {
+    public interface DaemonCallbacks {
         public void onEngineStarted();
         public void onEnginePaused();
 
