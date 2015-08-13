@@ -14,6 +14,7 @@ import com.sinapsi.client.web.gson.DeviceInterfaceInstanceCreator;
 import com.sinapsi.client.websocket.WSClient;
 import com.sinapsi.engine.execution.RemoteExecutionDescriptor;
 import com.sinapsi.model.DeviceInterface;
+import com.sinapsi.model.DevicesStatus;
 import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.UserInterface;
 import com.sinapsi.model.impl.ActionDescriptor;
@@ -378,7 +379,7 @@ public class RetrofitWebServiceFacade implements SinapsiWebServiceFacade, BGPKey
     }
 
     @Override
-    public void getAllDevicesByUser(UserInterface user, String deviceName, String deviceModel, WebServiceCallback<List<DeviceInterface>> result) {
+    public void getAllDevicesByUser(UserInterface user, String deviceName, String deviceModel, WebServiceCallback<DevicesStatus> result) {
         checkKeys();
         if (!onlineStatusProvider.isOnline()) return;
         cryptedRetrofit.getAllDevicesByUser(user.getEmail(), deviceName, deviceModel, convertCallback(result));

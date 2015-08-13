@@ -25,6 +25,7 @@ import com.sinapsi.engine.log.SinapsiLog;
 import com.sinapsi.engine.requirements.DefaultRequirementResolver;
 import com.sinapsi.engine.system.PlatformDependantObjectProvider;
 import com.sinapsi.model.DeviceInterface;
+import com.sinapsi.model.DevicesStatus;
 import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.UserInterface;
 import com.sinapsi.model.impl.CommunicationInfo;
@@ -67,8 +68,9 @@ public class SinapsiDaemonThread implements
     private boolean started = false;
 
     private boolean onlineMode = false;
-    private static final UserInterface logoutUser = fm.newUser(-1, "Not logged in yet.", "", false, "user");
-    private UserInterface loggedUser = logoutUser;
+    public static final UserInterface LOGOUT_USER = fm.newUser(-1, "Not logged in yet.", "", false, "user");
+    private UserInterface loggedUser = LOGOUT_USER;
+    private DevicesStatus devicesStatus = new DevicesStatus();
 
     private UserSettingsFacade userSettings;
     private RestAdapter.Log retrofitLog;
@@ -81,8 +83,6 @@ public class SinapsiDaemonThread implements
     private OnlineStatusProvider onlineStatusProvider;
     private SinapsiModule[] modules;
     private DaemonCallbacks daemonCallbacks;
-
-    //TODO: devices table
 
     public SinapsiDaemonThread(
             UserSettingsFacade userSettings,
@@ -196,7 +196,7 @@ public class SinapsiDaemonThread implements
         LocalDBManager ldbm_curr;
         DiffDBManager ddbm;
 
-        if(loggedUser.getId() == logoutUser.getId()){
+        if(loggedUser.getId() == LOGOUT_USER.getId()){
             ldbm_old = dbManagerProvider.openLocalDBManager("logout_user-lastSync.db", engine.getComponentFactory());
             ldbm_curr = dbManagerProvider.openLocalDBManager("logout_user-current.db", engine.getComponentFactory());
             ddbm = dbManagerProvider.openDiffDBManager("logout_user-diff.db");
@@ -228,17 +228,34 @@ public class SinapsiDaemonThread implements
             @Override
             public void onBackgroundSyncSuccess(List<MacroInterface> currentMacros) {
                 engine.startEngine();
+                daemonCallbacks.onEngineStarted();
+                updateDevicesTable(false);
             }
 
             @Override
             public void onBackgroundSyncFail(Throwable error) {
                 //try to start the engine anyway
                 engine.startEngine();
+                daemonCallbacks.onEngineStarted();
             }
         }, false);
 
 
-        daemonCallbacks.onEngineStarted();
+
+    }
+
+    private void updateDevicesTable(final boolean userIntention) {
+        web.getAllDevicesByUser(loggedUser, device.getName(), device.getModel(), new SinapsiWebServiceFacade.WebServiceCallback<DevicesStatus>() {
+            @Override
+            public void success(DevicesStatus devicesStatus, Object response) {
+                SinapsiDaemonThread.this.devicesStatus = devicesStatus;
+            }
+
+            @Override
+            public void failure(Throwable error) {
+                daemonCallbacks.onDeviceTableUpdateFailure(error, userIntention);
+            }
+        });
     }
 
 
@@ -331,7 +348,7 @@ public class SinapsiDaemonThread implements
 
     @Override
     public void onUserLogOut() {
-        this.loggedUser = logoutUser;
+        this.loggedUser = LOGOUT_USER;
         pauseEngine();
         if(getWSClient().isOpen()) getWSClient().closeConnection();
         daemonCallbacks.onUserLogout();
@@ -406,10 +423,12 @@ public class SinapsiDaemonThread implements
             }
             break;
             case SinapsiMessageTypes.NEW_CONNECTION: {
+                updateDevicesTable(false);
                 daemonCallbacks.onWebSocketNewConnectionNotificationReceived();
             }
             break;
             case SinapsiMessageTypes.CONNECTION_LOST: {
+                updateDevicesTable(false);
                 daemonCallbacks.onWebSocketConnectionLostNotificationReceived();
             }
             break;
@@ -467,6 +486,14 @@ public class SinapsiDaemonThread implements
         this.device = device;
     }
 
+    public DevicesStatus getDevicesStatus() {
+        return devicesStatus;
+    }
+
+    public void setDevicesStatus(DevicesStatus devicesStatus) {
+        this.devicesStatus = devicesStatus;
+    }
+
     public interface DBManagerProvider {
         public LocalDBManager openLocalDBManager(String fileName, ComponentFactory componentFactory);
         public DiffDBManager openDiffDBManager(String fileName);
@@ -516,6 +543,8 @@ public class SinapsiDaemonThread implements
 
         public void onSyncConflicts(List<MacroSyncConflict> conflicts, SyncManager.ConflictResolutionCallback callback);
         public void onSyncFailure(Throwable e, boolean showError);
+
+        public void onDeviceTableUpdateFailure(Throwable e, boolean showError);
 
         public void onWebSocketError(Exception ex);
         public void onWebSocketClose(int code, String reason, boolean remote);

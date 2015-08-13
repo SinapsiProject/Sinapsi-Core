@@ -2,6 +2,7 @@ package com.sinapsi.client.web;
 
 import com.sinapsi.engine.execution.RemoteExecutionDescriptor;
 import com.sinapsi.model.DeviceInterface;
+import com.sinapsi.model.DevicesStatus;
 import com.sinapsi.model.MacroComponent;
 import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.UserInterface;
@@ -79,7 +80,7 @@ public interface SinapsiWebServiceFacade {
     public void getAllDevicesByUser(UserInterface user,
                                     String deviceName,
                                     String deviceModel,
-                                    WebServiceCallback<List<DeviceInterface>> result);
+                                    WebServiceCallback<DevicesStatus> result);
 
 
     /**

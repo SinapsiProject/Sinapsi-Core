@@ -2,6 +2,7 @@ package com.sinapsi.client.web;
 
 import com.sinapsi.engine.execution.RemoteExecutionDescriptor;
 import com.sinapsi.model.DeviceInterface;
+import com.sinapsi.model.DevicesStatus;
 import com.sinapsi.model.MacroComponent;
 import com.sinapsi.model.MacroInterface;
 import com.sinapsi.model.impl.ActionDescriptor;
@@ -95,7 +96,7 @@ public interface RetrofitInterface {
             @Query("email") String email,
             @Query("name") String deviceName,
             @Query("model") String deviceModel,
-            Callback<List<DeviceInterface>> devices);
+            Callback<DevicesStatus> devices);
 
 
     /**
